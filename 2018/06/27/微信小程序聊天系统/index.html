@@ -88,7 +88,7 @@
 <meta property="og:description" content="摘要：这是一篇关于小程序聊天系统的制作  聊天界面如何布局 聊天界面如何跑通逻辑  小程序聊天系统的制作：先上效果图 编辑之后的效果 好的，开始上代码首先呢进行页面布局，这是部分聊天框的代码，这部分我放在了标签里面，让它可进行滚动（这里有两个坑，下边会说到） 1234567891011121314151617&amp;lt;view class=&amp;quot;time&amp;quot;&amp;gt;2018-02-16">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://developers.weixin.qq.com/miniprogram/introduction/image/a.png?t=2018413">
-<meta property="og:updated_time" content="2018-06-27T10:30:12.000Z">
+<meta property="og:updated_time" content="2018-06-27T10:42:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微信小程序聊天系统">
 <meta name="twitter:description" content="摘要：这是一篇关于小程序聊天系统的制作  聊天界面如何布局 聊天界面如何跑通逻辑  小程序聊天系统的制作：先上效果图 编辑之后的效果 好的，开始上代码首先呢进行页面布局，这是部分聊天框的代码，这部分我放在了标签里面，让它可进行滚动（这里有两个坑，下边会说到） 1234567891011121314151617&amp;lt;view class=&amp;quot;time&amp;quot;&amp;gt;2018-02-16">
@@ -394,7 +394,7 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="https://developers.weixin.qq.com/miniprogram/introduction/image/a.png?t=2018413" rel="gallery_cjiwzb7r80000ob9e6h302oai"
+                 href="https://developers.weixin.qq.com/miniprogram/introduction/image/a.png?t=2018413" rel="gallery_cjiwzr8dv0000qg9e0p7wkpqq"
                  itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
                 <img src="https://developers.weixin.qq.com/miniprogram/introduction/image/a.png?t=2018413" itemprop="contentUrl"/>
               </a>
@@ -428,7 +428,12 @@
 <h3 id="这里还有个稍难点"><a href="#这里还有个稍难点" class="headerlink" title="这里还有个稍难点"></a>这里还有个稍难点</h3><p>就是每次发送完毕之后，页面应该是要滚动到最底部，才能看到最新的消息对不对，不然不符合用户体验。于是乎我用了这个方法：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sendMessage: function () &#123;</span><br><span class="line">    var len = this.data.chatData.length //遍历的数组的长度</span><br><span class="line">    this.setData(&#123;</span><br><span class="line">      scrollTop: 1000 * len // 这里我们的单对话区域最高1000，取了最大值，应该有方法取到精确的  </span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 <p>代码很简单，我定义了一个值scrollTop，就是设置设置竖向滚动条位置，参考文档<a href="https://developers.weixin.qq.com/miniprogram/dev/component/scroll-view.html" target="_blank" rel="noopener">在这里</a>，然后在scroll-view这个组建上的scroll-top属性绑定这个值就好了。</p>
-<h5 id="由于目前还没有对接后台，所以微信小程序聊天系统的讲解就先到这里了，对接后小程序的WebSocket方法我估计也会写一篇文章，在此多谢大家的观看了"><a href="#由于目前还没有对接后台，所以微信小程序聊天系统的讲解就先到这里了，对接后小程序的WebSocket方法我估计也会写一篇文章，在此多谢大家的观看了" class="headerlink" title="由于目前还没有对接后台，所以微信小程序聊天系统的讲解就先到这里了，对接后小程序的WebSocket方法我估计也会写一篇文章，在此多谢大家的观看了"></a>由于目前还没有对接后台，所以微信小程序聊天系统的讲解就先到这里了，对接后小程序的WebSocket方法我估计也会写一篇文章，在此多谢大家的观看了</h5>
+<h3 id="附送两个小技巧"><a href="#附送两个小技巧" class="headerlink" title="附送两个小技巧"></a>附送两个小技巧</h3><p>点击发送之后键盘不收起</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input confirm-type=&quot;send&quot; bindconfirm=&quot;bindSend&quot; confirm-hold=&quot;true&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<p>页面滚动到最底部时有个过度效果</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;scroll-view scroll-y=&apos;true&apos; scroll-with-animation=&quot;true&quot;&gt;</span><br></pre></td></tr></table></figure>
+<p>好了，由于目前还没有对接后台，所以微信小程序聊天系统的讲解就先到这里了，对接后小程序的WebSocket方法我估计也会写一篇文章，在此多谢大家的观看了</p>
+
       
     </div>
     
@@ -602,7 +607,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#摘要："><span class="nav-number">1.</span> <span class="nav-text">摘要：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小程序聊天系统的制作："><span class="nav-number">2.</span> <span class="nav-text">小程序聊天系统的制作：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#先上效果图"><span class="nav-number">2.1.</span> <span class="nav-text">先上效果图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编辑之后的效果"><span class="nav-number">2.2.</span> <span class="nav-text">编辑之后的效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#好的，开始上代码"><span class="nav-number">2.3.</span> <span class="nav-text">好的，开始上代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#那么到这里，界面构建的应该都没太大问题了吧？然后开始写一写逻辑部分。"><span class="nav-number">2.4.</span> <span class="nav-text">那么到这里，界面构建的应该都没太大问题了吧？然后开始写一写逻辑部分。</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#HTML部分"><span class="nav-number">2.4.0.0.1.</span> <span class="nav-text">HTML部分</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#CSS部分"><span class="nav-number">2.4.0.0.2.</span> <span class="nav-text">CSS部分</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#这里还有个稍难点"><span class="nav-number">2.5.</span> <span class="nav-text">这里还有个稍难点</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#由于目前还没有对接后台，所以微信小程序聊天系统的讲解就先到这里了，对接后小程序的WebSocket方法我估计也会写一篇文章，在此多谢大家的观看了"><span class="nav-number">2.5.0.1.</span> <span class="nav-text">由于目前还没有对接后台，所以微信小程序聊天系统的讲解就先到这里了，对接后小程序的WebSocket方法我估计也会写一篇文章，在此多谢大家的观看了</span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#摘要："><span class="nav-number">1.</span> <span class="nav-text">摘要：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小程序聊天系统的制作："><span class="nav-number">2.</span> <span class="nav-text">小程序聊天系统的制作：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#先上效果图"><span class="nav-number">2.1.</span> <span class="nav-text">先上效果图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编辑之后的效果"><span class="nav-number">2.2.</span> <span class="nav-text">编辑之后的效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#好的，开始上代码"><span class="nav-number">2.3.</span> <span class="nav-text">好的，开始上代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#那么到这里，界面构建的应该都没太大问题了吧？然后开始写一写逻辑部分。"><span class="nav-number">2.4.</span> <span class="nav-text">那么到这里，界面构建的应该都没太大问题了吧？然后开始写一写逻辑部分。</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#HTML部分"><span class="nav-number">2.4.0.0.1.</span> <span class="nav-text">HTML部分</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#CSS部分"><span class="nav-number">2.4.0.0.2.</span> <span class="nav-text">CSS部分</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#这里还有个稍难点"><span class="nav-number">2.5.</span> <span class="nav-text">这里还有个稍难点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#附送两个小技巧"><span class="nav-number">2.6.</span> <span class="nav-text">附送两个小技巧</span></a></li></ol></li></ol></div>
             
 
           </div>
