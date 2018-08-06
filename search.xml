@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[平安集团校招官网动画过渡效果]]></title>
+    <url>%2F2018%2F08%2F06%2F%E5%B9%B3%E5%AE%89%E9%9B%86%E5%9B%A2%E6%A0%A1%E6%8B%9B%E5%AE%98%E7%BD%91%E5%8A%A8%E7%94%BB%E8%BF%87%E6%B8%A1%E6%95%88%E6%9E%9C%2F</url>
+    <content type="text"><![CDATA[前言最近公司接了一个平安集团校招官网的项目，毕竟人家平安集团是个大企业嘛，那这个项目就必须得高端大气上档次呀，因此我就按照设计师的要求在许多地方加入了动画的过渡效果，也有一两周没更新博客了，那正好看看关于css的这简单酷炫的动画效果吧 The first part效果： css关键代码：1234567891011121314151617181920212223242526.c_content &#123; opacity: 0; background: rgba(0, 0, 0, 0.5); transition: all 0.4s ease; &amp;:hover &#123; opacity: 1; h3 &#123; -webkit-transform: translateY(0); opacity: 1; &#125; .c_about &#123; -webkit-transform: translateY(0); opacity: 0.8; &#125; &#125; h3 &#123; -webkit-transform: translateY(40px); transition: all 0.4s ease; opacity: 0; &#125; .c_about &#123; opacity: 0; -webkit-transform: translateY(40px); transition: all 0.4s ease 0.1s; &#125; &#125; 代码解析：可能gif图太快了，效果看的不太清，非常的简单，我们只要考虑两个地方： 背景：先设置半透明黑色背景的透明度opacity:0，并且加入过渡属性transition，然后在:hover 选择器的时候将透明度opacity:1，即可。 文字：透明度和背景一样，先设置opacity:0，在:hover选择器执行的时候设置opacity:1。 接着设置他们的位置，在默认情况下位置是transform: translateY(40px);Y轴负方向偏移40px 在:hover选择器执行的时候设置transform: translateY(0);偏移量为0 即可 更厉害点的效果： The second part效果： css关键代码：1234567891011121314151617181920212223242526272829303132333435li &#123; transform: translateY(350px); opacity: 0;&#125;.actived &#123; transform: translateY(0) !important; opacity: 1;&#125;li:first-of-type &#123; -webkit-transition: all 0.8s ease; -o-transition: all 0.8s ease; -moz-transition: all 0.8s ease; transition: all 0.8s ease;&#125;li:nth-of-type(2) &#123; -webkit-transition: all 1.3s ease; -o-transition: all 1.3s ease; -moz-transition: all 1.3s ease; transition: all 1.3s ease;&#125;li:nth-of-type(3) &#123; -webkit-transition: all 1.8s ease; -o-transition: all 1.8s ease; -moz-transition: all 1.8s ease; transition: all 1.8s ease;&#125;li:nth-of-type(4) &#123; -webkit-transition: all 2.3s ease; -o-transition: all 2.3s ease; -moz-transition: all 2.3s ease; transition: all 2.3s ease;&#125; 代码解析：这四个卡片最外层是四个&lt; li &gt;标签，我先判断页面的滚动距离，如果滚动距离达到了四个卡片的位置的话，卡片就添加 actived 属性。这里很好理解，就是当滚动距离达到了相应位置，将位置从下边350px 的地方变成0px 而已，关键在于first-of-type与nth-of-type(n) 属性，规定属于其父元素的第n个子元素的每个子元素 。所以我们把每个&lt; li &gt;标签设置不同的过渡时间即可。 还有一种效果 The third part效果： css关键代码：1234567891011121314151617181920212223242526.title &#123; transform: translateY(350px); opacity: 0; transition: all 1s ease;&#125; .title &#123; transform: translateY(0) !important; transition: all 1.2s ease; opacity: 1;&#125; #menu li &#123; width: 30px; transition: all 0.6s ease;&#125;#menu a &#123; transition: all 0.6s ease; opacity: 0;&#125;#menu .active a &#123; opacity: 1;&#125;#menu .active &#123; width: 53px;&#125; 代码解析：这里用了一个Fullpage.js的JQuery插件，全屏翻页效果。动画效果分为文字部分和导航条部分 文字部分：翻页的时候会添加 actived属性，那么在文字默认效果是 位置在下方350px；透明度为 0；过渡时间 1s； actived属性的效果是 位置为0px；透明度为 1；即可做到文字上浮效果 导航栏部分：默认的时候长度为30px；文字透明度为 0；actived属性的时候 长度为53px；透明度为 1，即可]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+        <tag>css3</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[微信小程序封装get和post]]></title>
     <url>%2F2018%2F07%2F26%2F%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%B0%81%E8%A3%85get%E5%92%8Cpost%2F</url>
     <content type="text"><![CDATA[首先我们先创建一个配置文件配置各种基础常量。config.js123456var config = &#123; APPID: 'your id', BASE_URL:'your url',&#125;//暴露接口module.exports = config; util.js123456789101112131415161718192021222324252627282930313233343536373839404142var config = require('config.js');//引入配置文件。function Get(url,data,cb)&#123; wx.showNavigationBarLoading();//顶部显示loading效果 wx.request(&#123; url: config.BASE_URL + url, data:data, success:(res) =&gt; &#123; typeof cb == "function" &amp;&amp; cb(res.data,""); wx.hideNavigationBarLoading();//顶部隐藏loading效果 &#125;, fail:(err) =&gt; &#123; typeof cb == "function" &amp;&amp; cb(null,err.errMsg); console.log("get 请求:" + config.BASE_URL); console.log(err) wx.hideNavigationBarLoading(); &#125; &#125;)&#125;;function Post(url, data, cb) &#123; wx.request(&#123; method: 'POST', url: config.BASE_URL + url, data: data, header:&#123; "Content-Type": "application/x-www-form-urlencoded"//跨域请求 &#125;, success: (res) =&gt; &#123; typeof cb == "function" &amp;&amp; cb(res.data, ""); &#125;, fail: (err) =&gt; &#123; typeof cb == "function" &amp;&amp; cb(null, err.errMsg); console.log("post 请求:" + config.BASE_URL); console.log(err); &#125; &#125;);&#125;;//暴露接口module.exports = &#123; httpGet: Get, httpPost: Post&#125; 其中的cb作为一个回调函数，执行返回成功时的操作。至此我们成功封装了微信小程序的get和post两个方法。在index.js使用如下：1234567891011var http = require('../../utils/util.js');Page(&#123; data: &#123; &#125;, onLoad:function()&#123; http.httpGet("?action=index", &#123;appid: config.APPID,&#125;, function (res) &#123; console.log(res); &#125;); &#125;); &#125; &#125;)]]></content>
@@ -23,6 +35,7 @@
       </categories>
       <tags>
         <tag>微信小程序</tag>
+        <tag>JavaScript</tag>
       </tags>
   </entry>
   <entry>
