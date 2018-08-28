@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Redux初体验]]></title>
+    <url>%2F2018%2F08%2F28%2FRedux%E5%88%9D%E4%BD%93%E9%AA%8C%2F</url>
+    <content type="text"><![CDATA[前言花了一个星期，把设计稿给重构完毕了（所以也有一星期没有发博客了）。今天呢研究了一下Redux的用法，我发现实际运用Redux的时候好像没有之前写的Demo这么简单。写一篇博客来记录一下今天Redux的初体验。听说在React框架里边用到Redux的话，那么交互部分都在Redux里面完成。那么我这里写一个获取登录信息的逻辑吧。 Part 1在actions里面声明一个函数getUserInfo，这个函数呢返回了一个带着dispatch以及getState两个方法的匿名函数。这个函数采用了ES7语法的异步处理（async、await）⚠️ await 必须在带有async的函数才能使用。然后呢这里调用了Taro框架的方法获取到了openid以及微信个人信息等一系列资料，我准备把这些资料放到Redux里面。 12345678910111213141516171819202122export const getUserInfo = () =&gt; &#123; const that = this return async (dispatch: ThunkDispatch&lt;RootState, null, AnyAction&gt;, getState: () =&gt; RootState) =&gt; &#123; try &#123; let userLogin = await Taro.login() let checkSession = await Taro.checkSession() let userInfo = await Taro.getUserInfo() const url = getGlobalData('openidUrl')+'?appid=' + GlobalData.appid + '&amp;secret=' + GlobalData.secret + '&amp;js_code=' + userLogin.code + '&amp;grant_type=authorization_code'; let openidData = await Taro.request(&#123; url: url, data: &#123;&#125;, method: 'GET', &#125;); dispatch(userLoginSuccess(&#123; data: openidData.data &#125;)) &#125; catch (error) &#123; console.error(`Login response error: $&#123;error&#125;`) &#125; &#125;&#125; 于是我在这里用中间件的方法，将Reducer在异步操作结束后自动执行（详细资料可以参考阮一峰Redux入门教程（二）：中间件与异步操作） 1234567891011// 获取openid成功export const USER_LOGON_SUCCESS = 'USER_LOGON_SUCCESS'export interface getOpenidSuccess &#123; data: any&#125;export const userLoginSuccess = createAction( USER_LOGON_SUCCESS, (payload: getOpenidSuccess) =&gt; &#123; return payload &#125;) 输出的结果是这样的 好了，那么我在action已经能输出这个值了，只要在reducer里面把state替换掉应该就OK了 part 2首先在 actions引入常量 USER_LOGON_SUCCESS ，然后我定义了一个方法userLoginSuccess将action的值打包成一个对象返回出来，最后通过[USER_LOGON_SUCCESS]: userLoginSuccess将这个对象存储到Redux就行了。这里有两点要注意 ⚠️ 从其他文件引入任何东西的时候，都使用 { } ⚠️ 在使用handleActions方法的时候必须带一个默认状态 defaultStatus 1234567891011121314151617181920import &#123;USER_LOGON_SUCCESS&#125; from '../actions/counter'import &#123; handleActions, Action, Reducer &#125; from "redux-actions";let defaultStatus = &#123; userLoginSuccess:&#123;&#125;&#125;function userLoginSuccess(state, action)&#123; console.log(action.payload) return Object.assign(&#123;&#125;,state, action.payload)&#125;export const homeReducer = handleActions( &#123; [USER_LOGON_SUCCESS]: userLoginSuccess &#125;, defaultStatus);]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+        <tag>React</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[steps简易步骤条的制作]]></title>
     <url>%2F2018%2F08%2F21%2Fsteps%E7%AE%80%E6%98%93%E6%AD%A5%E9%AA%A4%E6%9D%A1%E7%9A%84%E5%88%B6%E4%BD%9C%2F</url>
     <content type="text"><![CDATA[前言这是来到新公司的第一篇博客，上周学习了一周React、Redux、TypeScript，这周可以干活了。今天看了设计稿，十分的好看，特别是那块步骤条。好看的同时呢，实现起来好像还是有些难度，花了一个多钟的时间把步骤条给写了出来，那么现在我来分享一下吧 先上效果图 让我们开始吧html部分这里的HTML部分十分的简单，但是我用的是React里边的TSX语法，这里放出来大家需要的话自行转化成HTML语法就好了 1234567891011render () &#123; return ( &lt;View className='addServiceAPage'&gt; &lt;View class="steps"&gt; &lt;View className="stepsList active"&gt;名称&lt;/View&gt; &lt;View className="stepsList"&gt;价格&lt;/View&gt; &lt;View className="stepsList"&gt;简介、图片&lt;/View&gt; &lt;/View&gt; &lt;/View&gt; ) &#125; 再放一个精简版本供大家复制粘贴吧 12345&lt;ul class="steps"&gt; &lt;li class="active"&gt;名称&lt;/li&gt; &lt;li&gt;价格&lt;/li&gt; &lt;li&gt;简介、图片&lt;/li&gt;&lt;/ul&gt; css部分css代码有点长，我一步一步来解释 1234567891011121314.steps &#123; position: relative; margin-bottom: 30px; counter-reset: step; /*创建步骤数字计数器*/&#125;/*步骤描述*/.steps li &#123; list-style-type: none; font-size: 12px; text-align: center; width: 33%; position: relative; float: left;&#125; 首先先把ul和三个li排版好，让它浮动偏左，或者用Flex布局都可以，并设置好它的宽度。这里要注意的是css的counter-reset属性，对部分和子部分进行编号（比如 “Section 1”、”1.1”、”1.2”），这里我用它定义每个步骤的编号 12345678910111213141516171819202122232425262728/*步骤数字*/.steps li:before &#123; display: block; content: counter(step); /*设定计数器内容*/ counter-increment: step; /*计数器值递增*/ width: 32px; height: 32px; background-color: #019875; line-height: 32px; border-radius: 32px; font-size: 16px; color: #fff; text-align: center; font-weight: 700; margin: 0 auto 8px auto;&#125; /*连接线*/.steps li ~ li:after &#123; content: ''; width: 100%; height: 2px; background-color: #019875; position: absolute; left: -50%; top: 15px; z-index: -1; /*放置在数字后面*/&#125; 这里用了 :before，:after两个伪类分别定义步骤条里边的编号和它们的连接线。特别注意 content: counter(step); 和 counter-increment: step;，这里将父元素定义的编号在这里渲染出来。 123456789101112/*将当前/完成步骤之前的数字及连接线变绿*/.steps li.active:before,.steps li.active:after &#123; background-color: #019875;&#125; /*将当前/完成步骤之后的数字及连接线变灰*/.steps li.active ~ li:before,.steps li.active ~ li:after &#123; background-color: #777;&#125; 最后设置 active属性，改变高亮前后的编号背景颜色以及连接线的背景颜色 The end.. 多谢大家的观看]]></content>
@@ -34,8 +46,8 @@
       <tags>
         <tag>前端</tag>
         <tag>微信小程序</tag>
-        <tag>http</tag>
         <tag>JavaScript</tag>
+        <tag>http</tag>
       </tags>
   </entry>
   <entry>
