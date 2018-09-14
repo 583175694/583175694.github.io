@@ -88,7 +88,7 @@
 <meta property="og:description" content="获取 *.protp文件后端完成了接口之后，将.proto 文件发给你 编译 *.protp文件将*.proto文件编译成ts、js文件，这里我是将命令写成一个脚本，运行npm run proto即可编译 123&amp;#123;    &quot;proto&quot;: &quot;pbjs -t static-module -w commonjs -o ./src/proto/ProtoServices.js ./src/pr">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://ofdznzfo9.qnssl.com/wublog_protoScreen2.png">
-<meta property="og:updated_time" content="2018-09-14T07:29:30.000Z">
+<meta property="og:updated_time" content="2018-09-14T07:33:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="通过protobuf.js与后端进行交互">
 <meta name="twitter:description" content="获取 *.protp文件后端完成了接口之后，将.proto 文件发给你 编译 *.protp文件将*.proto文件编译成ts、js文件，这里我是将命令写成一个脚本，运行npm run proto即可编译 123&amp;#123;    &quot;proto&quot;: &quot;pbjs -t static-module -w commonjs -o ./src/proto/ProtoServices.js ./src/pr">
@@ -394,7 +394,7 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="https://ofdznzfo9.qnssl.com/wublog_protoScreen2.png" rel="gallery_cjm1onl6a0012t99e2ilzy9py"
+                 href="https://ofdznzfo9.qnssl.com/wublog_protoScreen2.png" rel="gallery_cjm1os4mv0013ue9e2nbd6qne"
                  itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
                 <img src="https://ofdznzfo9.qnssl.com/wublog_protoScreen2.png" itemprop="contentUrl"/>
               </a>
@@ -412,8 +412,8 @@
 <figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&#123;</span></span><br><span class="line"><span class="comment"></span>    <span class="comment">"proto":</span> <span class="comment">"pbjs</span> <span class="literal">-</span><span class="comment">t</span> <span class="comment">static</span><span class="literal">-</span><span class="comment">module</span> <span class="literal">-</span><span class="comment">w</span> <span class="comment">commonjs</span> <span class="literal">-</span><span class="comment">o</span> <span class="string">.</span><span class="comment">/src/proto/ProtoServices</span><span class="string">.</span><span class="comment">js</span> <span class="string">.</span><span class="comment">/src/proto/*</span><span class="string">.</span><span class="comment">proto</span>  <span class="literal">-</span><span class="literal">-</span><span class="comment">no</span><span class="literal">-</span><span class="comment">encode</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">no</span><span class="literal">-</span><span class="comment">create</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">no</span><span class="literal">-</span><span class="comment">decode</span> <span class="comment">&amp;&amp;</span> <span class="comment">pbts</span> <span class="literal">-</span><span class="comment">o</span> <span class="string">.</span><span class="comment">/src/proto/ProtoServices</span><span class="string">.</span><span class="comment">d</span><span class="string">.</span><span class="comment">ts</span> <span class="string">.</span><span class="comment">/src/proto/ProtoServices</span><span class="string">.</span><span class="comment">js</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">no</span><span class="literal">-</span><span class="comment">encode</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">no</span><span class="literal">-</span><span class="comment">create</span> <span class="literal">-</span><span class="literal">-</span><span class="comment">no</span><span class="literal">-</span><span class="comment">decode"</span></span><br><span class="line"><span class="comment">&#125;</span></span><br></pre></td></tr></table></figure>
 <p>这里其实存在两条命令，分别是：<br><figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pbjs -t static-module -w commonjs -o <span class="string">./src/proto/ProtoServices.js</span> <span class="string">./src/proto/</span>*<span class="string">.proto</span>  <span class="params">--no-encode</span> <span class="params">--no-create</span> <span class="params">--no-decode</span></span><br></pre></td></tr></table></figure></p>
 <figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pbts -o <span class="string">./src/proto/ProtoServices.d.ts</span> <span class="string">./src/proto/ProtoServices.js</span> <span class="params">--no-encode</span> <span class="params">--no-create</span> <span class="params">--no-decode</span></span><br></pre></td></tr></table></figure>
-<p>第一句是：通过 ==./src/proto/== 路径下的所有proto文件生成 ==ProtoServices.js== 文件，目录在 ./src/proto/ 下</p>
-<p>第二句是：通过 ==新生成的 ProtoServices.js文件==生成一份 ==ProtoServices.d.ts==文件，目录在 ./src/proto/ 下</p>
+<p>第一句是：通过 <em>./src/proto/</em> 路径下的所有proto文件生成 <em>ProtoServices.JavaScript</em> 文件，目录在 ./src/proto/ 下</p>
+<p>第二句是：通过 <em>新生成的 ProtoServices.js</em>文件生成一份 <em>ProtoServices.d.ts</em>文件，目录在 ./src/proto/ 下</p>
 <h2 id="获取泛型"><a href="#获取泛型" class="headerlink" title="获取泛型"></a>获取泛型</h2><p>生成了ts之后呢，提取他其中的泛型，这里获取了他三种泛型</p>
 <ul>
 <li>发起的请求的泛型</li>
