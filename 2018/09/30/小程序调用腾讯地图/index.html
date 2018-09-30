@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="前端,css3," />
+  <meta name="keywords" content="前端,微信小程序," />
 
 
 
@@ -79,20 +79,20 @@
 
 
 
-<meta name="description" content="前言视差滚动效果大家可能都听过，基本上都是JS实现的，有对应插件 – Parallax.js. 实际上，如果你对兼容性要求不是很高，比方说忽略IE浏览器，则我们使用简单的几行CSS代码就可以实现视差滚动效果了。 先上效果图 目前，Chrome以及FireFox等浏览器（不包括IE11在内的浏览器）都是有效果。 CSS实现部分1234567891011121314151617181920212223">
-<meta name="keywords" content="前端,css3">
+<meta name="description" content="腾讯位置服务第一步，我们先找到腾讯位置服务，找到其中的微信小程序JavaScript SDK，接着做好准备工作：  申请开发者密钥（key）：申请密钥  下载微信小程序JavaScriptSDK，微信小程序JavaScriptSDK v1.0  安全域名设置，在“设置” -&amp;gt; “开发设置”中设置request合法域名，添加https://apis.map.qq.com   实名认证 创建ke">
+<meta name="keywords" content="前端,微信小程序">
 <meta property="og:type" content="article">
-<meta property="og:title" content="纯CSS实现视差滚动效果">
-<meta property="og:url" content="http://yoursite.com/2018/09/12/纯CSS实现视差滚动效果/index.html">
+<meta property="og:title" content="小程序调用腾讯地图">
+<meta property="og:url" content="http://yoursite.com/2018/09/30/小程序调用腾讯地图/index.html">
 <meta property="og:site_name" content="w blog">
-<meta property="og:description" content="前言视差滚动效果大家可能都听过，基本上都是JS实现的，有对应插件 – Parallax.js. 实际上，如果你对兼容性要求不是很高，比方说忽略IE浏览器，则我们使用简单的几行CSS代码就可以实现视差滚动效果了。 先上效果图 目前，Chrome以及FireFox等浏览器（不包括IE11在内的浏览器）都是有效果。 CSS实现部分1234567891011121314151617181920212223">
+<meta property="og:description" content="腾讯位置服务第一步，我们先找到腾讯位置服务，找到其中的微信小程序JavaScript SDK，接着做好准备工作：  申请开发者密钥（key）：申请密钥  下载微信小程序JavaScriptSDK，微信小程序JavaScriptSDK v1.0  安全域名设置，在“设置” -&amp;gt; “开发设置”中设置request合法域名，添加https://apis.map.qq.com   实名认证 创建ke">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://ofdznzfo9.qnssl.com/wublog_parallax.png">
-<meta property="og:updated_time" content="2018-09-12T03:09:43.000Z">
+<meta property="og:image" content="https://ofdznzfo9.qnssl.com/wublog_map.png">
+<meta property="og:updated_time" content="2018-09-30T11:04:47.946Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="纯CSS实现视差滚动效果">
-<meta name="twitter:description" content="前言视差滚动效果大家可能都听过，基本上都是JS实现的，有对应插件 – Parallax.js. 实际上，如果你对兼容性要求不是很高，比方说忽略IE浏览器，则我们使用简单的几行CSS代码就可以实现视差滚动效果了。 先上效果图 目前，Chrome以及FireFox等浏览器（不包括IE11在内的浏览器）都是有效果。 CSS实现部分1234567891011121314151617181920212223">
-<meta name="twitter:image" content="https://ofdznzfo9.qnssl.com/wublog_parallax.png">
+<meta name="twitter:title" content="小程序调用腾讯地图">
+<meta name="twitter:description" content="腾讯位置服务第一步，我们先找到腾讯位置服务，找到其中的微信小程序JavaScript SDK，接着做好准备工作：  申请开发者密钥（key）：申请密钥  下载微信小程序JavaScriptSDK，微信小程序JavaScriptSDK v1.0  安全域名设置，在“设置” -&amp;gt; “开发设置”中设置request合法域名，添加https://apis.map.qq.com   实名认证 创建ke">
+<meta name="twitter:image" content="https://ofdznzfo9.qnssl.com/wublog_map.png">
 
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/09/12/纯CSS实现视差滚动效果/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/09/30/小程序调用腾讯地图/"/>
 
 
 
 
 
-  <title>纯CSS实现视差滚动效果 | w blog</title>
+  <title>小程序调用腾讯地图 | w blog</title>
   
 
 
@@ -302,7 +302,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/12/纯CSS实现视差滚动效果/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/09/30/小程序调用腾讯地图/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hey`w">
@@ -319,7 +319,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">纯CSS实现视差滚动效果</h1>
+          <h1 class="post-title" itemprop="name headline">小程序调用腾讯地图</h1>
         
 
         <div class="post-meta">
@@ -331,8 +331,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-12T10:33:30+08:00">
-                2018-09-12
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-09-30T19:02:33+08:00">
+                2018-09-30
               </time>
             
 
@@ -354,8 +354,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/前端/" itemprop="url" rel="index">
-                    <span itemprop="name">前端</span>
+                  <a href="/categories/微信小程序/" itemprop="url" rel="index">
+                    <span itemprop="name">微信小程序</span>
                   </a>
                 </span>
 
@@ -394,9 +394,9 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="https://ofdznzfo9.qnssl.com/wublog_parallax.png" rel="gallery_cjmorf4eq000u3h9ewqki127v"
+                 href="https://ofdznzfo9.qnssl.com/wublog_map.png" rel="gallery_cjmorf4e900053h9ewrsh06ta"
                  itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
-                <img src="https://ofdznzfo9.qnssl.com/wublog_parallax.png" itemprop="contentUrl"/>
+                <img src="https://ofdznzfo9.qnssl.com/wublog_map.png" itemprop="contentUrl"/>
               </a>
             
           
@@ -407,20 +407,25 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>视差滚动效果大家可能都听过，基本上都是JS实现的，有对应插件 – Parallax.js.</p>
-<p>实际上，如果你对兼容性要求不是很高，比方说忽略IE浏览器，则我们使用简单的几行CSS代码就可以实现视差滚动效果了。</p>
-<h2 id="先上效果图"><a href="#先上效果图" class="headerlink" title="先上效果图"></a>先上效果图</h2><p><img src="https://ofdznzfo9.qnssl.com/wublog_QQ20180912-101354-HD.gif" alt="image"></p>
-<p>目前，Chrome以及FireFox等浏览器（不包括IE11在内的浏览器）都是有效果。</p>
-<h2 id="CSS实现部分"><a href="#CSS实现部分" class="headerlink" title="CSS实现部分"></a>CSS实现部分</h2><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line">  <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#container</span> &#123;</span><br><span class="line">  <span class="comment">/* 滚动容器 */</span></span><br><span class="line">  <span class="attribute">position</span>: fixed;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">perspective</span>: <span class="number">1px</span>; <span class="comment">// 3D视图</span></span><br><span class="line">  <span class="attribute">overflow-x</span>: hidden;</span><br><span class="line">  <span class="attribute">overflow-y</span>: scroll;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#group1</span> &#123;</span><br><span class="line">  <span class="comment">/* 视差元素的父级需要3D视角 */</span></span><br><span class="line">  <span class="attribute">height</span>: <span class="number">1000px</span>;</span><br><span class="line">  <span class="attribute">position</span>: relative;</span><br><span class="line">  <span class="attribute">transform-style</span>: preserve-<span class="number">3</span>d;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.background</span> &#123;</span><br><span class="line">  <span class="comment">/* 滚动比较慢的背景元素 */</span></span><br><span class="line">  <span class="attribute">transform</span>: translateZ(-<span class="number">1px</span>);</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">500px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#FF8A8A</span>;</span><br><span class="line">  <span class="attribute">padding-top</span>: <span class="number">100px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.foreground</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">500px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">500px</span>;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>; </span><br><span class="line">  <span class="attribute">background</span>: <span class="number">#23819C</span>;</span><br><span class="line">  <span class="attribute">opacity</span>: <span class="number">0.8</span>;</span><br><span class="line">  <span class="attribute">padding-top</span>: <span class="number">100px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="HTML部分"><a href="#HTML部分" class="headerlink" title="HTML部分"></a>HTML部分</h2><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">div</span> <span class="built_in">id</span>='container'&gt;</span><br><span class="line">  &lt;<span class="keyword">div</span> <span class="built_in">id</span>=<span class="string">"group1"</span>&gt;</span><br><span class="line">    &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"background"</span>&gt;</span><br><span class="line">      &lt;center&gt;I'm an element far away.&lt;/center&gt;</span><br><span class="line">    &lt;/<span class="keyword">div</span>&gt;</span><br><span class="line">    &lt;<span class="keyword">div</span> <span class="built_in">class</span>=<span class="string">"foreground"</span>&gt;</span><br><span class="line">      &lt;center&gt;I'm an element close <span class="keyword">by</span>.&lt;/center&gt;</span><br><span class="line">    &lt;/<span class="keyword">div</span>&gt;</span><br><span class="line">  &lt;/<span class="keyword">div</span>&gt;</span><br><span class="line">&lt;/<span class="keyword">div</span>&gt;</span><br></pre></td></tr></table></figure>
-<p>大家可以注意上面代码出现了一个1px(来自perspective), 一个-1px(来自transform)以及scale(2)中的2. 这几个数字之间有什么关系呢？</p>
-<h2 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h2><p>我们先看下面这个3D视角示意图(来自<a href="https://css-tricks.com/tour-performant-responsive-css-site/" target="_blank" rel="noopener">这里</a>)</p>
-<p><img src="https://ofdznzfo9.qnssl.com/wublog_css3d-edited.png" alt="image"></p>
-<p>当我们在屏幕前面1个单位的地方，看屏幕后面1个单位的元素，肉眼所见的画面大小只有实际的1/2，即所谓的近大远小。此时scale(2)让内容放大到原来2倍，正好在平面上看上去好像是原来大小。</p>
-<p>虽然肉眼所见体积似乎是1:1，但是，滚动时候的位移变化还是1:2, 应该很好理解。举个极端的例子，我们坐在电瓶车上看天上的月亮，虽然车子在40码的速度奔啊奔，但是，好像月亮的位置没有移动，一直就在头顶。网页中的3D就是模拟真实世界的3D效果，因此，也会有这种视差体验。</p>
-<p>或者这么讲吧，CSS3 3D天然视差效果，滚动，只是视差体现的一个触发条件。</p>
-<p>于是，如果我们想实现3层视差滚动怎么办？很简单，来个transform: translateZ(-2px)试试~</p>
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>据我测试，直接body或html滚动似乎难以实现视差滚动效果，不过天色已晚，我没深究，有兴趣的小伙伴可以研究分享下。</p>
+        <h2 id="腾讯位置服务"><a href="#腾讯位置服务" class="headerlink" title="腾讯位置服务"></a>腾讯位置服务</h2><p>第一步，我们先找到腾讯位置服务，找到其中的<a href="https://lbs.qq.com/qqmap_wx_jssdk/index.html" target="_blank" rel="noopener">微信小程序JavaScript SDK</a>，接着做好准备工作：</p>
+<ol>
+<li><p>申请开发者密钥（key）：申请密钥</p>
+</li>
+<li><p>下载微信小程序JavaScriptSDK，微信小程序JavaScriptSDK v1.0</p>
+</li>
+<li><p>安全域名设置，在“设置” -&gt; “开发设置”中设置request合法域名，添加<a href="https://apis.map.qq.com" target="_blank" rel="noopener">https://apis.map.qq.com</a></p>
+</li>
+</ol>
+<h5 id="实名认证"><a href="#实名认证" class="headerlink" title="实名认证"></a>实名认证</h5><p><img src="https://ofdznzfo9.qnssl.com/wublog_map1.png" alt="image"></p>
+<h5 id="创建key"><a href="#创建key" class="headerlink" title="创建key"></a>创建key</h5><p><img src="https://ofdznzfo9.qnssl.com/wublog_map2.png" alt="image"></p>
+<h5 id="设置key"><a href="#设置key" class="headerlink" title="设置key"></a>设置key</h5><p>这里一定要注意把最下面的WebSeriveAPI勾选</p>
+<p><img src="https://ofdznzfo9.qnssl.com/wublog_map4.png" alt="image"></p>
+<h5 id="选择地图样式"><a href="#选择地图样式" class="headerlink" title="选择地图样式"></a>选择地图样式</h5><p><img src="https://ofdznzfo9.qnssl.com/wublog_map3.png" alt="image"></p>
+<h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><p>有很多api，你们自行去看吧..<br>这里展示一下地点搜索</p>
+<h6 id="wxml"><a href="#wxml" class="headerlink" title="wxml"></a>wxml</h6><figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="comment">&lt;!--绑定点击事件--&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">button</span> <span class="attr">bindtap</span>=<span class="string">"nearby_search"</span>&gt;</span>搜索周边KFC<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="comment">&lt;!--地图容器--&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">map</span> <span class="attr">id</span>=<span class="string">"myMap"</span></span></span></span><br><span class="line"><span class="xml">   markers="</span><span class="template-variable">&#123;&#123;markers&#125;&#125;</span><span class="xml">"</span></span><br><span class="line"><span class="xml">   style="width:100%;height:300px;"</span></span><br><span class="line"><span class="xml">   longitude="116.313972"</span></span><br><span class="line"><span class="xml">   latitude="39.980014" scale='16'&gt;</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">map</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h6 id="js"><a href="#js" class="headerlink" title="js"></a>js</h6><figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 引入SDK核心类</span></span><br><span class="line"><span class="keyword">var</span> QQMapWX = <span class="built_in">require</span>(<span class="string">'../../utils/qqmap-wx-jssdk.js'</span>);</span><br><span class="line"><span class="keyword">var</span> qqmapsdk;</span><br><span class="line">Page(&#123;</span><br><span class="line"></span><br><span class="line">  <span class="attribute">data</span>: &#123;</span><br><span class="line">    <span class="attribute">location</span>: <span class="string">''</span>,</span><br><span class="line">    <span class="attribute">inputValue</span>: <span class="string">''</span>,</span><br><span class="line">    <span class="attribute">markers</span>: []</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="attribute">onLoad</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 实例化API核心类</span></span><br><span class="line">    qqmapsdk = <span class="keyword">new</span> QQMapWX(&#123;</span><br><span class="line">      <span class="attribute">key</span>: <span class="string">'EO5BZ-VG5RJ-5MNFX-FFUOY-3PP3T-LOBCM'</span></span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attribute">onShow</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  nearby_search() &#123;</span><br><span class="line">    <span class="keyword">var</span> _this = <span class="keyword">this</span>;</span><br><span class="line">    <span class="comment">// 调用接口</span></span><br><span class="line">    qqmapsdk.search(&#123;</span><br><span class="line">      <span class="attribute">keyword</span>: <span class="string">'kfc'</span>,  <span class="comment">//搜索关键词</span></span><br><span class="line">      <span class="attribute">location</span>: <span class="string">'39.980014,116.313972'</span>,  <span class="comment">//设置周边搜索中心点</span></span><br><span class="line">      <span class="attribute">success</span>: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123; <span class="comment">//搜索成功后的回调</span></span><br><span class="line">        <span class="keyword">var</span> mks = []</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; res.data.length; i++) &#123;</span><br><span class="line">          mks.push(&#123; <span class="comment">// 获取返回结果，放到mks数组中</span></span><br><span class="line">            <span class="attribute">title</span>: res.data[i].title,</span><br><span class="line">            <span class="attribute">id:</span><span class="string"> res.data</span>[i].id,</span><br><span class="line">            <span class="attribute">latitude</span>: res.data[i].location.lat,</span><br><span class="line">            <span class="attribute">longitude</span>: res.data[i].location.lng,</span><br><span class="line">            <span class="attribute">iconPath</span>: <span class="string">"/image/icon_location.png"</span>, <span class="comment">//图标路径</span></span><br><span class="line">            <span class="attribute">width</span>: <span class="number">20</span>,</span><br><span class="line">            <span class="attribute">height</span>: <span class="number">20</span></span><br><span class="line">          &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">        _this.setData(&#123; <span class="comment">//设置markers属性，将搜索结果显示在地图中</span></span><br><span class="line">          <span class="attribute">markers</span>: mks</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attribute">fail</span>: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(res);</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attribute">complete</span>: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(res);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  onSelect() &#123;</span><br><span class="line">    <span class="keyword">var</span> that = <span class="keyword">this</span>;</span><br><span class="line">    qqmapsdk.search(&#123;</span><br><span class="line">      <span class="attribute">keyword</span>: <span class="keyword">this</span>.data.inputValue,</span><br><span class="line">      <span class="comment">// location: '39.980014,116.313972',  //设置周边搜索中心点</span></span><br><span class="line">      <span class="attribute">success</span>: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(res.data);</span><br><span class="line">        that.setData(&#123;</span><br><span class="line">          <span class="attribute">location</span>: res.data[<span class="number">0</span>].location</span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="keyword">var</span> mks = []</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; res.data.length; i++) &#123;</span><br><span class="line">          mks.push(&#123; <span class="comment">// 获取返回结果，放到mks数组中</span></span><br><span class="line">            <span class="attribute">title</span>: res.data[i].title,</span><br><span class="line">            <span class="attribute">id:</span><span class="string"> res.data</span>[i].id,</span><br><span class="line">            <span class="attribute">latitude</span>: res.data[i].location.lat,</span><br><span class="line">            <span class="attribute">longitude</span>: res.data[i].location.lng,</span><br><span class="line">            <span class="attribute">iconPath</span>: <span class="string">"/image/icon_location.png"</span>, <span class="comment">//图标路径</span></span><br><span class="line">            <span class="attribute">width</span>: <span class="number">20</span>,</span><br><span class="line">            <span class="attribute">height</span>: <span class="number">25</span></span><br><span class="line">          &#125;)</span><br><span class="line">        &#125;</span><br><span class="line">        that.setData(&#123; <span class="comment">//设置markers属性，将搜索结果显示在地图中</span></span><br><span class="line">          <span class="attribute">markers</span>: mks</span><br><span class="line">        &#125;)</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attribute">fail</span>: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(res);</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attribute">complete</span>: <span class="function"><span class="keyword">function</span> (<span class="params">res</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(res);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  onHref() &#123;</span><br><span class="line">    wx.navigateTo(&#123;</span><br><span class="line">      <span class="attribute">url</span>: <span class="string">'../index2/index2'</span>,</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<h6 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h6><p><img src="https://ofdznzfo9.qnssl.com/wublog_map5.png" alt="image"></p>
+<p>OK，代码自行复制去试试吧，谢谢大家</p>
 
       
     </div>
@@ -440,7 +445,7 @@
           
             <a href="/tags/前端/" rel="tag"><i class="fa fa-tag"></i> 前端</a>
           
-            <a href="/tags/css3/" rel="tag"><i class="fa fa-tag"></i> css3</a>
+            <a href="/tags/微信小程序/" rel="tag"><i class="fa fa-tag"></i> 微信小程序</a>
           
         </div>
       
@@ -453,8 +458,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/28/Redux初体验/" rel="next" title="Redux初体验">
-                <i class="fa fa-chevron-left"></i> Redux初体验
+              <a href="/2018/09/14/通过protobuf.js与后端进行交互/" rel="next" title="通过protobuf.js与后端进行交互">
+                <i class="fa fa-chevron-left"></i> 通过protobuf.js与后端进行交互
               </a>
             
           </div>
@@ -462,10 +467,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/09/14/通过protobuf.js与后端进行交互/" rel="prev" title="通过protobuf.js与后端进行交互">
-                通过protobuf.js与后端进行交互 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -601,7 +602,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#先上效果图"><span class="nav-text">先上效果图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS实现部分"><span class="nav-text">CSS实现部分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML部分"><span class="nav-text">HTML部分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现原理"><span class="nav-text">实现原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-text">结语</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#腾讯位置服务"><span class="nav-text">腾讯位置服务</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#实名认证"><span class="nav-text">实名认证</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#创建key"><span class="nav-text">创建key</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#设置key"><span class="nav-text">设置key</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#选择地图样式"><span class="nav-text">选择地图样式</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#API"><span class="nav-text">API</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#wxml"><span class="nav-text">wxml</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#js"><span class="nav-text">js</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#效果"><span class="nav-text">效果</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
