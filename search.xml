@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[小程序卡片式轮播图]]></title>
+    <url>%2F2018%2F10%2F15%2F%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%8D%A1%E7%89%87%E5%BC%8F%E8%BD%AE%E6%92%AD%E5%9B%BE%2F</url>
+    <content type="text"><![CDATA[前言国庆休息了一周，加上上周没有特别想写的技术，于是半个月过去了，没写博文。今天研究了一下小程序卡片式轮播图的制作。在上一个小程序，我们的设计师也设计了一个这样的卡片式轮播图，但是由于当时时间比较紧凑，没有办法很好的实现，于是就用了最普通的轮播图样式，今天正好有时间给我研究了一下，因此写一篇博文记录一下。 效果图老规矩，先上一个效果图 小程序轮播组件这里我是在小程序的轮播组件的基础上进行了修改，有想自己手写轮播图的兄dei这篇对你的帮助不太大。 wxml跟普通的轮播图组件一样，将官方的swiper组件代码复制下来就好 1234567&lt;swiper class="swiper" indicator-dots="true" current="&#123;&#123;current&#125;&#125;" autoplay="true" circular="true" bindchange="changeSwiper"&gt; &lt;block wx:for="&#123;&#123;images&#125;&#125;" wx:for-index="index"&gt; &lt;swiper-item class="&#123;&#123;current == index ? 'active' : ''&#125;&#125;"&gt; &lt;image src="&#123;&#123;item.url&#125;&#125;" class="slide-image" mode="aspectFill" /&gt; &lt;/swiper-item&gt; &lt;/block&gt;&lt;/swiper&gt; ⚠️ 这里要注意的是，我们在切换轮播图的时候要监听轮播图的下标，也就是current，并且当current与for循环的下标index相等的时候，给他一个active的类。 JavsScript在逻辑层只要获取当前的轮播图下标，并且将他的值赋值给current即可。 12345changeSwiper: function (e) &#123; this.setData(&#123; current: e.detail.current &#125;)&#125; wxsswxss是重点，我们可以看到上边的层级， 轮播图由一个大的 swiper 包裹着数个swiper-item构成 并且swiper-item包裹着一个image标签 因此我们只要 将swiper-item的宽度缩小，在页面上就能显示三张图片（左右两个不是完整的，并且需要调一下left值） 然后把image标签大小缩小的原来的.9x，那么在图片之间就会有空隙 最后把当前轮播图（带active的swiper-item）的image标签大小恢复为1x，那么切换轮播图的时候，就会有大小的变化了 最后我们再加上大小变化的过渡效果transition: all .3s ease-in-out 就完成了卡片式轮播图的制作 12345678910111213141516171819202122swiper &#123; width: 100%; height: 300rpx;&#125;swiper-item &#123; position: relative; width: 80% !important; left: 75rpx;&#125;image &#123; transform: scale(.9); transition: all .3s ease; border-radius: 16rpx;&#125;.active &gt; image &#123; transform: scale(1); transition: all .3s ease; &#125; 附上完整的项目github地址 https://github.com/583175694/swiperCard]]></content>
+      <categories>
+        <category>微信小程序</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+        <tag>微信小程序</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[小程序调用腾讯地图]]></title>
     <url>%2F2018%2F09%2F30%2F%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%B0%83%E7%94%A8%E8%85%BE%E8%AE%AF%E5%9C%B0%E5%9B%BE%2F</url>
     <content type="text"><![CDATA[腾讯位置服务第一步，我们先找到腾讯位置服务，找到其中的微信小程序JavaScript SDK，接着做好准备工作： 申请开发者密钥（key）：申请密钥 下载微信小程序JavaScriptSDK，微信小程序JavaScriptSDK v1.0 安全域名设置，在“设置” -&gt; “开发设置”中设置request合法域名，添加https://apis.map.qq.com 实名认证 创建key 设置key这里一定要注意把最下面的WebSeriveAPI勾选 选择地图样式 API有很多api，你们自行去看吧..这里展示一下地点搜索 wxml123456789&lt;!--绑定点击事件--&gt;&lt;button bindtap="nearby_search"&gt;搜索周边KFC&lt;/button&gt;&lt;!--地图容器--&gt;&lt;map id="myMap" markers="&#123;&#123;markers&#125;&#125;" style="width:100%;height:300px;" longitude="116.313972" latitude="39.980014" scale='16'&gt;&lt;/map&gt; js123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293// 引入SDK核心类var QQMapWX = require('../../utils/qqmap-wx-jssdk.js');var qqmapsdk;Page(&#123; data: &#123; location: '', inputValue: '', markers: [] &#125;, onLoad: function () &#123; // 实例化API核心类 qqmapsdk = new QQMapWX(&#123; key: 'EO5BZ-VG5RJ-5MNFX-FFUOY-3PP3T-LOBCM' &#125;); &#125;, onShow: function () &#123; &#125;, nearby_search() &#123; var _this = this; // 调用接口 qqmapsdk.search(&#123; keyword: 'kfc', //搜索关键词 location: '39.980014,116.313972', //设置周边搜索中心点 success: function (res) &#123; //搜索成功后的回调 var mks = [] for (var i = 0; i &lt; res.data.length; i++) &#123; mks.push(&#123; // 获取返回结果，放到mks数组中 title: res.data[i].title, id: res.data[i].id, latitude: res.data[i].location.lat, longitude: res.data[i].location.lng, iconPath: "/image/icon_location.png", //图标路径 width: 20, height: 20 &#125;) &#125; _this.setData(&#123; //设置markers属性，将搜索结果显示在地图中 markers: mks &#125;) &#125;, fail: function (res) &#123; console.log(res); &#125;, complete: function (res) &#123; console.log(res); &#125; &#125;); &#125;, onSelect() &#123; var that = this; qqmapsdk.search(&#123; keyword: this.data.inputValue, // location: '39.980014,116.313972', //设置周边搜索中心点 success: function (res) &#123; console.log(res.data); that.setData(&#123; location: res.data[0].location &#125;) var mks = [] for (var i = 0; i &lt; res.data.length; i++) &#123; mks.push(&#123; // 获取返回结果，放到mks数组中 title: res.data[i].title, id: res.data[i].id, latitude: res.data[i].location.lat, longitude: res.data[i].location.lng, iconPath: "/image/icon_location.png", //图标路径 width: 20, height: 25 &#125;) &#125; that.setData(&#123; //设置markers属性，将搜索结果显示在地图中 markers: mks &#125;) &#125;, fail: function (res) &#123; console.log(res); &#125;, complete: function (res) &#123; console.log(res); &#125; &#125;) &#125;, onHref() &#123; wx.navigateTo(&#123; url: '../index2/index2', &#125;) &#125;&#125;) 效果 OK，代码自行复制去试试吧，谢谢大家]]></content>
@@ -131,8 +143,8 @@
       </categories>
       <tags>
         <tag>前端</tag>
-        <tag>微信小程序</tag>
         <tag>css3</tag>
+        <tag>微信小程序</tag>
       </tags>
   </entry>
   <entry>
