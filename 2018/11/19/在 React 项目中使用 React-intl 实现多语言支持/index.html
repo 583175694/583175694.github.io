@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="前端,React," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言最近在项目中添加了语言国际化的功能。 语言国际化，也有人说成是语言本地化，其实就是为Web App添加多语言，我们的项目当前包含了中文版和英文版，按理来说『逐字替换』也不是多大事儿，但是，这么Low的做法，有钱途吗？ 一开始的时候，我考虑的是传统的为整个项目添加config文件，根据不同的语言和地区，加载不同的config文件，就能够达到界面语言切换的目的。当然，也正是因为这个想法太过于幼稚，">
+<meta name="keywords" content="前端,React">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在 React 项目中使用 React-intl 实现多语言支持">
+<meta property="og:url" content="http://yoursite.com/2018/11/19/在 React 项目中使用 React-intl 实现多语言支持/index.html">
+<meta property="og:site_name" content="w blog">
+<meta property="og:description" content="前言最近在项目中添加了语言国际化的功能。 语言国际化，也有人说成是语言本地化，其实就是为Web App添加多语言，我们的项目当前包含了中文版和英文版，按理来说『逐字替换』也不是多大事儿，但是，这么Low的做法，有钱途吗？ 一开始的时候，我考虑的是传统的为整个项目添加config文件，根据不同的语言和地区，加载不同的config文件，就能够达到界面语言切换的目的。当然，也正是因为这个想法太过于幼稚，">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://github.com/583175694/markdownImage/blob/master/internationalization.jpg?raw=true">
+<meta property="og:updated_time" content="2018-11-19T04:29:02.448Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="在 React 项目中使用 React-intl 实现多语言支持">
+<meta name="twitter:description" content="前言最近在项目中添加了语言国际化的功能。 语言国际化，也有人说成是语言本地化，其实就是为Web App添加多语言，我们的项目当前包含了中文版和英文版，按理来说『逐字替换』也不是多大事儿，但是，这么Low的做法，有钱途吗？ 一开始的时候，我考虑的是传统的为整个项目添加config文件，根据不同的语言和地区，加载不同的config文件，就能够达到界面语言切换的目的。当然，也正是因为这个想法太过于幼稚，">
+<meta name="twitter:image" content="https://github.com/583175694/markdownImage/blob/master/internationalization.jpg?raw=true">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/11/19/在 React 项目中使用 React-intl 实现多语言支持/"/>
+
+
+
+
+
+  <title>在 React 项目中使用 React-intl 实现多语言支持 | w blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">w blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+<!-- 
+      <a href="https://github.com/583175694" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#222; color:#fff; position: relative; top: 0; border: 0; left: 0; transform: scale(-1, 1);" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style></a>
+ -->
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/19/在 React 项目中使用 React-intl 实现多语言支持/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hey`w">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="w blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">在 React 项目中使用 React-intl 实现多语言支持</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-19T12:29:01+08:00">
+                2018-11-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+        <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+          
+          
+            <div class="post-gallery-row">
+              <a class="post-gallery-img fancybox"
+                 href="https://github.com/583175694/markdownImage/blob/master/internationalization.jpg?raw=true" rel="gallery_cjont9pge0000ln9ez1kt0o2q"
+                 itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
+                <img src="https://github.com/583175694/markdownImage/blob/master/internationalization.jpg?raw=true" itemprop="contentUrl"/>
+              </a>
+            
+          
+
+          
+          </div>
+        </div>
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在项目中添加了语言国际化的功能。</p>
+<p>语言国际化，也有人说成是语言本地化，其实就是为Web App添加多语言，我们的项目当前包含了中文版和英文版，按理来说『逐字替换』也不是多大事儿，但是，这么Low的做法，有钱途吗？</p>
+<p>一开始的时候，我考虑的是传统的为整个项目添加config文件，根据不同的语言和地区，加载不同的config文件，就能够达到界面语言切换的目的。当然，也正是因为这个想法太过于幼稚，所以才被称为『一开始』的想法。语言的国际化不仅仅是将界面上的UI文字翻译成另一种语言，还包括了日期&amp;时间显示，数字显示（英文环境下每隔3位一个逗号：1,000），量词的显示（一个苹果是apple，两个苹果就应该是apples），甚至还有一个字符串中间插了一个变量的情况（”今天午饭吃了{count}个鸡腿”）…</p>
+<p><img src="https://github.com/583175694/markdownImage/blob/master/programmer1.png?raw=true" alt="image"></p>
+<p>所以这并不只是一个简单的字符替换问题，并且，我们要很方便的导出一个目录，放到word或者page当中，给到其他同事对照着进行翻译工作，这个非常重要！！难道你要让产品经理直接在代码里改么？或者你想一个一个搜索替换？不考虑清楚就干的话，相信我，You’ll pay for this。</p>
+<p>作为一个有追求的代码家，你肯定不希望在index.html当中增加一行<script>引用吧？另外，UI中的文字全部都是使用图片的那个同学，请起立，滚。如果想要在一个React项目中，优雅的import something from somewhere，然后将界面中的文字用&lt;首字母大写 /&gt; 组件替代，最后通过简单的配置实现语言的国际化，那我们就用React-intl吧。</p>
+<p><img src="https://github.com/583175694/markdownImage/blob/master/FormatJS.png?raw=true" alt="image"></p>
+<h2 id="React-intl"><a href="#React-intl" class="headerlink" title="React-intl"></a>React-intl</h2><p>项目地址: <a href="https://github.com/yahoo/react-intl">https://github.com/yahoo/react-intl</a></p>
+<h3 id="1-安装React-intl"><a href="#1-安装React-intl" class="headerlink" title="1. 安装React-intl"></a>1. 安装React-intl</h3><p>假设你已经在你的系统中安装了node.js和npm，如果你还不知道这两个是什么东西，请自行百度，对，在百度都能找到答案。</p>
+<p>打开终端，进入项目根目录，输入以下指令安装React-intl:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">install</span> react-intl -<span class="keyword">save</span></span><br></pre></td></tr></table></figure>
+<p>注意：为了兼容Safari各个版本，需要同时安装 intl，intl在大部分的『现代』浏览器中是默认自带的，但是Safari和IE11以下的版本就没有了，这里需要留个心眼。</p>
+<p>安装intl需要在终端中输入以下指令：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">install</span> intl <span class="comment">--save</span></span><br></pre></td></tr></table></figure>
+<p>这里还有一个注意：由于React-intl的每一个组件的使用方法大同小异，和ReactJS的语法完全一致，所以我就仅仅描述如何使用<FormattedMessage />这个组件的用法，借此抛砖引玉，相信看完之后已经足够帮助你迅速的去使用这个开源框架了。</p>
+<h3 id="2-引用React-intl"><a href="#2-引用React-intl" class="headerlink" title="2. 引用React-intl"></a>2. 引用React-intl</h3><figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; FormattedMessage &#125; <span class="keyword">from</span> <span class="string">'react-intl'</span>;</span><br></pre></td></tr></table></figure>
+<p>由于我使用的是ES6的语法，所以是支持直接引用组件的</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span> ReactIntl <span class="keyword">from</span> <span class="string">'react-intl'</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="3-创建locale配置文件"><a href="#3-创建locale配置文件" class="headerlink" title="3. 创建locale配置文件"></a>3. 创建locale配置文件</h3><p>这里，我们将文件命名为zh_CN.js和en_US.js，代表中文和美式英语的配置包。</p>
+<p>在zh_CN.js编写如下代码：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const zh_CN = &#123;</span><br><span class="line">            hello:<span class="string">"你好，方浩！"</span>，</span><br><span class="line">            superHello:<span class="string">"你好，&#123; someone &#125; !"</span></span><br><span class="line">        &#125;</span><br><span class="line"><span class="builtin-name">export</span><span class="built_in"> default </span>zh_CN;    </span><br><span class="line">在en_US.js编写如下代码：</span><br></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">const en_US = &#123;</span><br><span class="line">            hello:<span class="string">"Hello, Howard!"</span>，</span><br><span class="line">            superHello:<span class="string">"Hello, &#123; someone &#125; !"</span></span><br><span class="line">        &#125;    </span><br><span class="line"><span class="builtin-name">export</span><span class="built_in"> default </span>en_US;</span><br></pre></td></tr></table></figure>
+<p>于是，我们就创建好了locale文件，但是，在实际的项目中配置文件不会这么简单，您可能需要根据业务需求按照不同的页面或者不同的功能块创建不同的文件树，然后用模块化的方法将不同的配置文件进行组织，已达成你的目标，这里我也就没能力逼逼太多了。</p>
+<p>你可能想问，{ someone } 是什么鬼？其实悟性高一些的话就应该已经猜到，这个应该就是前面提到过的在字符串中插入动态参数的用法，事实上也是这样的。</p>
+<h3 id="4-使用"><a href="#4-使用" class="headerlink" title="4. 使用"></a>4. 使用<IntlProvider /></h3><p>使用<IntlProvider /> 组件包裹住需要您需要进行语言国际化的组件，用法和React-redux的<Provider />差不多，当<IntlProvider /> 包裹住某个组件的时候，这个组件本身和组件内部包含的子组件就可以获得所有React-intl提供的接口以及在<IntlProvider /> 中引入的locale配置文件的内容。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; render &#125; <span class="keyword">from</span> <span class="string">'react-dom'</span>;</span><br><span class="line"><span class="comment">//引入locale配置文件，具体路径根据实际情况填写</span></span><br><span class="line"><span class="keyword">import</span> zh_CN <span class="keyword">from</span> <span class="string">'./zh_CN'</span>;</span><br><span class="line"><span class="keyword">import</span> en-US <span class="keyword">from</span> <span class="string">'./en-US'</span>;</span><br><span class="line"><span class="keyword">import</span> zh <span class="keyword">from</span> <span class="string">'react-intl/locale-data/zh'</span>;</span><br><span class="line"><span class="keyword">import</span> en <span class="keyword">from</span> <span class="string">'react-intl/locale-data/en'</span></span><br><span class="line"><span class="comment">//如果浏览器没有自带intl，则需要在使用npm安装intl之后添加如下代码</span></span><br><span class="line"><span class="keyword">import</span> &#123; IntlProvider,addLocaleData &#125; <span class="keyword">from</span> <span class="string">'react-intl'</span>;</span><br><span class="line"><span class="keyword">import</span> intl <span class="keyword">from</span> <span class="string">'intl'</span>;</span><br><span class="line">addLocaleData([...en,...zh]);</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">render(    </span><br><span class="line">        &lt;IntlProvider </span><br><span class="line">            locale=&#123;<span class="string">'en'</span>&#125; </span><br><span class="line">            messages=&#123;en_US&#125;</span><br><span class="line">        &gt;</span><br><span class="line">            &lt;App /&gt;</span><br><span class="line">        &lt;<span class="regexp">/IntlProvider&gt;,    </span></span><br><span class="line"><span class="regexp">        document.getElementById('container')</span></span><br><span class="line"><span class="regexp">);</span></span><br></pre></td></tr></table></figure>
+<p><IntlProvider />需要传递两个参数：</p>
+<p>locale是传递需要国际化的语言的缩写，通过这个参数可以确定格式化日期，数字，量词的时候按照哪一种语言的规则，这个是规则是intl提供的，一般浏览器会内置这个库，但是在Safari和IE11之前需要自己安装，安装的方法前面已经提及，请自己翻阅。</p>
+<p>messages是用于传递刚刚我们在第3步中定义的配置文件的，从示例代码中我们可以看出，首先我们使用Import语句引入了配置文件，然后将配置文件的内容传递给了messages这个参数，此时<App />组件中的所有组件都可以拿到配置文件中的内容了。</p>
+<p>那个跳起来的同学，请先坐下，我猜你是想问，是不是每次都要手动修改这两个参数以适配不同语言呢？</p>
+<p>其实不然，我们完全可以按照下面的做法自动识别当前浏览器的语言：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">chooseLocale()&#123;</span><br><span class="line">    <span class="keyword">switch</span>(navigator.language.split(<span class="string">'_'</span>)[<span class="number">0</span>])&#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">'en'</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">'en_US'</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">case</span> <span class="string">'zh'</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">'zh_CN'</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        ...</span><br><span class="line">        ...</span><br><span class="line">        ...</span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">'en_US'</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">render(    </span><br><span class="line">        &lt;IntlProvider </span><br><span class="line">            locale=&#123;navigator.language&#125; </span><br><span class="line">            messages=&#123;chooseLocale()&#125;</span><br><span class="line">            &gt;</span><br><span class="line">            &lt;App /&gt;</span><br><span class="line">        &lt;<span class="regexp">/IntlProvider&gt;,    </span></span><br><span class="line"><span class="regexp">        document.getElementById('container')</span></span><br><span class="line"><span class="regexp">);</span></span><br></pre></td></tr></table></figure>
+<p>您还需要知道的是，<IntlProvider />是可以嵌套使用的，也就是说，在一个<IntlProvider />内部还可以有N个<IntlProvider />，这个功能的实际意义就是可以在英文网站中嵌套一个中文的或者德语的或者法语的板块，应用起来会更加灵活一些。</p>
+<h3 id="5-使用"><a href="#5-使用" class="headerlink" title="5. 使用"></a>5. 使用<FormattedMessage /></h3><p>前面的几个步骤其实都是为了这个步骤做铺垫的，在添加了<IntlProvoder />之后，我们就可以在其包裹的<App />及<App />包含的所有组件中获取到配置文件的信息，传入<FormattedMessage />组件的id参数也能其在配置文件中对应的字符串了。</p>
+<p>使用的方法如下：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;FormattedMessage</span><br><span class="line">    <span class="attribute">id</span>=<span class="string">'hello'</span></span><br><span class="line">    <span class="attribute">description</span>=<span class="string">'say hello to Howard.'</span></span><br><span class="line">    <span class="attribute">defaultMessage</span>=<span class="string">'Hello, Howard'</span></span><br><span class="line">    /&gt;</span><br></pre></td></tr></table></figure>
+<p>在Js执行的时候，组件就会找到配置文件中，‘hello’键名对应的字符串’Hello, Howard!’.</p>
+<p>输出的结果为：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span>Hello, Howard!<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">那么如何输出含有动态参数的字符串呢？比如Hello，Johnson!，如果我要问候的对象是一个变量呢？</span><br></pre></td></tr></table></figure>
+<p>那就这么写呗。。</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">FormattedMessage</span></span></span></span><br><span class="line"><span class="xml">    id='superHello'</span></span><br><span class="line"><span class="xml">    description='say hello to Howard.'</span></span><br><span class="line"><span class="xml">    defaultMessage='Hello, </span><span class="template-variable">&#123;someone&#125;</span><span class="xml">'</span></span><br><span class="line"><span class="xml">    values=</span><span class="template-variable">&#123;</span></span><br><span class="line"><span class="template-variable">        someone:this.props.name,</span></span><br><span class="line"><span class="template-variable">    &#125;</span><span class="xml"></span></span><br><span class="line"><span class="xml">    /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>以上的例子中，赋给someone的就是一个变量（假设这个变量是通过参数传进这个组件的），注意，如果是这样的话，那么locale配置文件中就要这么写。</p>
+<p>superHello:”你好，{ someone } !”<br>前面其实提过了，怕你忘了…我已经悄无声息的把id换成了superHello。</p>
+<p>更牛逼的是，这个someone还可以包含HTML标签！<br><figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">FormattedMessage</span></span></span></span><br><span class="line"><span class="xml">    id='superHello'</span></span><br><span class="line"><span class="xml">    description='say hello to Howard.'</span></span><br><span class="line"><span class="xml">    defaultMessage='Hello, &#123;someone&#125;'</span></span><br><span class="line"><span class="xml">    values=&#123;</span></span><br><span class="line"><span class="xml">        someone:<span class="tag">&lt;<span class="name">b</span>&gt;</span>this.props.name<span class="tag">&lt;/<span class="name">b</span>&gt;</span>,</span></span><br><span class="line"><span class="xml">    &#125;</span></span><br><span class="line"><span class="xml">    /&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>输出结果：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span>&gt;</span>Hello, <span class="tag">&lt;<span class="name">b</span>&gt;</span>Howard<span class="tag">&lt;/<span class="name">b</span>&gt;</span>!<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>于是，这个名字就被加粗了。</p>
+<p>眼尖的同学又要跳起来了，“webFunc，为什么所有的输出都带一个<span>标签，我就不能换成别的么？”</p>
+<p>不要着急，我正要说这个，对于这个问题，官方的文档是这么说的。</p>
+<p>By default <formattedMessage> will render the formatted string into<br>a <span>. If you need to customize rendering, you can either wrap it<br>with another React element (recommended), specify a different tagName<br>(e.g., ‘div’), or pass a function as the child.</p>
+<p>翻译过来就是，默认的是会包裹在<span>标签中的，如果想要让输出的字符串包裹在其他标签中的话，比如你想包裹在<div>中，你就把<FormattedMessage />组件包含在一对<div>中间，这是一种官方更加推荐的做法。</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;div&gt;</span><br><span class="line">&lt;FormattedMessage</span><br><span class="line">    <span class="attribute">id</span>=<span class="string">'hello'</span></span><br><span class="line">    <span class="attribute">description</span>=<span class="string">'say hello to Howard.'</span></span><br><span class="line">    <span class="attribute">defaultMessage</span>=<span class="string">'Hello, Howard!"</span></span><br><span class="line"><span class="string">    /&gt;</span></span><br><span class="line"><span class="string">&lt;/div&gt;</span></span><br></pre></td></tr></table></figure>
+<p>Well, that’s stupid…</p>
+<p>或者你可以给<FormattedMessage>传入一个tagName的参数。比如：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">FormattedMessage</span></span></span><br><span class="line"><span class="tag">    <span class="attr">id</span>=<span class="string">'hello'</span></span></span><br><span class="line"><span class="tag">    <span class="attr">tagName</span> = <span class="string">'div'</span></span></span><br><span class="line"><span class="tag">    <span class="attr">description</span>=<span class="string">'say hello to Howard.'</span></span></span><br><span class="line"><span class="tag">    <span class="attr">defaultMessage</span>=<span class="string">'Hello, Howard!'</span></span></span><br><span class="line"><span class="tag">    /&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>就会输出：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">div</span>&gt;Hello, Howard!&lt;/<span class="keyword">div</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>比较奇葩的是，也是我揣测作者不推荐使用这种方法的原因是…只要你高兴，tagName可以传入任意字符串，比如 shit:</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">FormattedMessage</span></span></span><br><span class="line"><span class="tag">    <span class="attr">id</span>=<span class="string">'hello'</span></span></span><br><span class="line"><span class="tag">    <span class="attr">tagName</span> = <span class="string">'shit'</span></span></span><br><span class="line"><span class="tag">    <span class="attr">description</span>=<span class="string">'say hello to Howard.'</span></span></span><br><span class="line"><span class="tag">    <span class="attr">defaultMessage</span>=<span class="string">'Hello, Howard!'</span></span></span><br><span class="line"><span class="tag">    /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>就会输出：<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">shit</span>&gt;</span>Hello, Howard!<span class="tag">&lt;/<span class="name">shit</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>Yes, shit happens.</p>
+</script></p>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag"><i class="fa fa-tag"></i> 前端</a>
+          
+            <a href="/tags/React/" rel="tag"><i class="fa fa-tag"></i> React</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/15/小程序卡片式轮播图/" rel="next" title="小程序卡片式轮播图">
+                <i class="fa fa-chevron-left"></i> 小程序卡片式轮播图
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/uploads/avatar2.jpg"
+                alt="Hey`w" />
+            
+              <p class="site-author-name" itemprop="name">Hey`w</p>
+              <p class="site-description motion-element" itemprop="description">It will be better.</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-text">前言</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Hey`w</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
