@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="前端,小程序," />
 
 
 
@@ -79,16 +79,20 @@
 
 
 
-<meta name="description" content="It will be better.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="w blog">
-<meta property="og:url" content="http://yoursite.com/categories/Git/index.html">
+<meta name="description" content="前言今天在开发过程中遇到了个小问题，textarea和input组件在小程序官方解释是原生组件，因此他不会被覆盖，始终在最上层。说实话，有点蛋疼，这个组件（当然我对小程序团队还是非常的respect的）。那么遇到了个坑就填呗。咱们先看看效果图   思路此处的解决思路是设置一个跟textarea布局一致的替代元素，与textarea交替展现。当点击替代元素时textarea展现，就可以输入内容，当t">
+<meta name="keywords" content="前端,小程序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="解决textarea，input等原生组件最上层穿透问题">
+<meta property="og:url" content="http://yoursite.com/2019/03/02/解决textarea，input等原生组件最上层穿透问题/index.html">
 <meta property="og:site_name" content="w blog">
-<meta property="og:description" content="It will be better.">
+<meta property="og:description" content="前言今天在开发过程中遇到了个小问题，textarea和input组件在小程序官方解释是原生组件，因此他不会被覆盖，始终在最上层。说实话，有点蛋疼，这个组件（当然我对小程序团队还是非常的respect的）。那么遇到了个坑就填呗。咱们先看看效果图   思路此处的解决思路是设置一个跟textarea布局一致的替代元素，与textarea交替展现。当点击替代元素时textarea展现，就可以输入内容，当t">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="https://github.com/583175694/markdownImage/blob/master/textareaBugBanner.png?raw=true">
+<meta property="og:updated_time" content="2019-03-02T08:45:30.551Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="w blog">
-<meta name="twitter:description" content="It will be better.">
+<meta name="twitter:title" content="解决textarea，input等原生组件最上层穿透问题">
+<meta name="twitter:description" content="前言今天在开发过程中遇到了个小问题，textarea和input组件在小程序官方解释是原生组件，因此他不会被覆盖，始终在最上层。说实话，有点蛋疼，这个组件（当然我对小程序团队还是非常的respect的）。那么遇到了个坑就填呗。咱们先看看效果图   思路此处的解决思路是设置一个跟textarea布局一致的替代元素，与textarea交替展现。当点击替代元素时textarea展现，就可以输入内容，当t">
+<meta name="twitter:image" content="https://github.com/583175694/markdownImage/blob/master/textareaBugBanner.png?raw=true">
 
 
 
@@ -118,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/Git/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/03/02/解决textarea，input等原生组件最上层穿透问题/"/>
 
 
 
 
 
-  <title>Category: Git | w blog</title>
+  <title>解决textarea，input等原生组件最上层穿透问题 | w blog</title>
   
 
 
@@ -143,7 +147,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -284,83 +288,201 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block category">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>Git<small>Category</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/02/解决textarea，input等原生组件最上层穿透问题/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Hey`w">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="w blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/07/06/Git常用命令/" itemprop="url">
-              
-                <span itemprop="name">Git常用命令</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">解决textarea，input等原生组件最上层穿透问题</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-07-06T11:36:12+08:00"
-              content="2018-07-06" >
-          07-06
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-02T16:25:00+08:00">
+                2019-03-02
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/小程序/" itemprop="url" rel="index">
+                    <span itemprop="name">小程序</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
+      
+        <div class="post-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+          
+          
+            <div class="post-gallery-row">
+              <a class="post-gallery-img fancybox"
+                 href="https://github.com/583175694/markdownImage/blob/master/textareaBugBanner.png?raw=true" rel="gallery_cjsr8sfm7001et19efmycp0rt"
+                 itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
+                <img src="https://github.com/583175694/markdownImage/blob/master/textareaBugBanner.png?raw=true" itemprop="contentUrl"/>
+              </a>
+            
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+          </div>
+        </div>
+      
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/06/02/搭建hexo博客初体验/" itemprop="url">
-              
-                <span itemprop="name">搭建Hexo博客初体验</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-06-02T19:49:11+08:00"
-              content="2018-06-02" >
-          06-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>今天在开发过程中遇到了个小问题，textarea和input组件在小程序官方解释是原生组件，因此他不会被覆盖，始终在最上层。说实话，有点蛋疼，这个组件（当然我对小程序团队还是非常的respect的）。那么遇到了个坑就填呗。咱们先看看效果图</p>
+<p><img src="https://github.com/583175694/markdownImage/blob/master/textareaBug2.jpeg?raw=true" alt="image"></p>
+<p><img src="https://github.com/583175694/markdownImage/blob/master/textareaBug1.jpeg?raw=true" alt="image"></p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>此处的解决思路是设置一个跟textarea布局一致的替代元素，与textarea交替展现。当点击替代元素时textarea展现，就可以输入内容，当textarea失去焦点时替代元素展现，将输入值赋给替代元素，这样不输入内容页面滚动时就不会出现textarea穿透问题。</p>
+<p>本坑注意要设置textarea自动聚焦（否则要点两次替代元素才能拉起键盘），且两个元素的切换要用wx:if,不能用显示和隐藏
+　　</p>
+<h2 id="coding"><a href="#coding" class="headerlink" title="coding"></a>coding</h2><p>这里我贴上Taro的代码（这里仅供思路参考，代码估计不太符合大多数人的业务场景）</p>
+<h6 id="HTML-部分"><a href="#HTML-部分" class="headerlink" title="HTML 部分"></a>HTML 部分</h6><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;View className=<span class="string">"name"</span>&gt;</span><br><span class="line">  &lt;Text&gt;姓名：&lt;/Text&gt;</span><br><span class="line">  &lt;Input className=&#123;!<span class="keyword">this</span>.state.showInput &amp;&amp; <span class="string">'positionHide'</span>&#125; value=&#123;<span class="keyword">this</span>.state.userInfo.nickName&#125; onInput=&#123;<span class="keyword">this</span>.editName&#125; focus=&#123;<span class="keyword">this</span>.state.showInput&#125; onBlur=&#123;<span class="keyword">this</span>.onShowInput&#125;&gt;&lt;/Input&gt;</span><br><span class="line">  &lt;View className=&#123;[<span class="string">"nickNameDisable"</span>, <span class="keyword">this</span>.state.userInfo.nickName &amp;&amp; <span class="string">'nickNameShow'</span>, <span class="keyword">this</span>.state.showInput &amp;&amp; <span class="string">'positionHide'</span>]&#125; onClick=&#123;<span class="keyword">this</span>.onShowInput&#125;&gt;</span><br><span class="line">    &lt;Text&gt;&#123;<span class="keyword">this</span>.state.userInfo.nickName || <span class="string">'请输入姓名'</span>&#125;&lt;/Text&gt;</span><br><span class="line">  &lt;/View&gt;</span><br><span class="line">&lt;/View&gt;</span><br><span class="line"></span><br><span class="line">&lt;View className=<span class="string">"describe"</span>&gt;</span><br><span class="line">  &lt;Text&gt;个人介绍：&lt;/Text&gt;</span><br><span class="line">  &lt;Textarea className=&#123;!<span class="keyword">this</span>.state.showTextarea &amp;&amp; <span class="string">'positionHide'</span>&#125; value=&#123;<span class="keyword">this</span>.state.userInfo.description&#125; onInput=&#123;<span class="keyword">this</span>.editDescribe&#125; focus=&#123;<span class="keyword">this</span>.state.showTextarea&#125; onBlur=&#123;<span class="keyword">this</span>.onShowTextarea&#125;&gt;&lt;/Textarea&gt;</span><br><span class="line">  &lt;View className=&#123;[<span class="string">"describeDisable"</span>, <span class="keyword">this</span>.state.userInfo.description &amp;&amp; <span class="string">'describeShow'</span>, <span class="keyword">this</span>.state.showTextarea &amp;&amp; <span class="string">'positionHide'</span>]&#125; onClick=&#123;<span class="keyword">this</span>.onShowTextarea&#125;&gt;</span><br><span class="line">    &lt;Text&gt;&#123;<span class="keyword">this</span>.state.userInfo.description || <span class="string">'请填写您详细的个人介绍（行业经历、获奖经验、教学资格等）帮助用户更了解您。'</span>&#125;&lt;/Text&gt;</span><br><span class="line">  &lt;/View&gt;</span><br><span class="line">&lt;/View&gt;</span><br></pre></td></tr></table></figure>
+<h6 id="JavaScript-部分"><a href="#JavaScript-部分" class="headerlink" title="JavaScript 部分"></a>JavaScript 部分</h6><figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">state</span>: State = &#123;</span><br><span class="line">  goodFieldLayer: false,</span><br><span class="line">  showTextarea: false,</span><br><span class="line">  showInput: false</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">on</span>ShowTextarea() &#123;</span><br><span class="line">  this.<span class="built_in">set</span>State(&#123;</span><br><span class="line">    showTextarea: !this.<span class="keyword">state</span>.showTextarea</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">on</span>ShowInput() &#123;</span><br><span class="line">  this.<span class="built_in">set</span>State(&#123;</span><br><span class="line">    showInput: !this.<span class="keyword">state</span>.showInput</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="CSS-部分"><a href="#CSS-部分" class="headerlink" title="CSS 部分"></a>CSS 部分</h6><p>这里仅贴了关键性代码</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.positionHide</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: fixed;</span><br><span class="line">  <span class="attribute">bottom</span>: -<span class="number">1000px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="代码解析"><a href="#代码解析" class="headerlink" title="代码解析"></a>代码解析</h2><p>其实呢这里我没有用wx:if，我发现了个小问题，因为当“伪textarea”切换到textarea的时候，autoFocus不能执行，我的解释是：如果用wx:if隐藏，要等确认显示了之后，再focus才行。有点蛋疼。</p>
+<p>那么我的方法是用postion丢到屏幕外看不见的地方 show的时候回到对应位置，并将autoFocus的值设为true，这样子才能点击“伪textarea”切换到textarea的时候，顺势弹出键盘。</p>
+<p>其他都比较简单了，当textarea失去焦点的时候，我加上positionHide，让他跑到屏幕外的地方。当他textarea出现的时候，让“伪textarea”跑到屏幕外的地方就完事了</p>
+<p>懒了两三个月，谢谢朋友的观看</p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/前端/" rel="tag"><i class="fa fa-tag"></i> 前端</a>
+          
+            <a href="/tags/小程序/" rel="tag"><i class="fa fa-tag"></i> 小程序</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/15/小程序在同个界面进行step/" rel="next" title="小程序在同个界面进行step">
+                <i class="fa fa-chevron-left"></i> 小程序在同个界面进行step
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -368,6 +490,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -388,8 +514,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -453,6 +588,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-text">思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#coding"><span class="nav-text">coding</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#HTML-部分"><span class="nav-text">HTML 部分</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#JavaScript-部分"><span class="nav-text">JavaScript 部分</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#CSS-部分"><span class="nav-text">CSS 部分</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#代码解析"><span class="nav-text">代码解析</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -600,6 +751,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
