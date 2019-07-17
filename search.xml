@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Flutter通过WebSocket传输媒体文件到小程序]]></title>
+    <url>%2F2019%2F07%2F17%2FFlutter%E9%80%9A%E8%BF%87WebSocket%E4%BC%A0%E8%BE%93%E5%AA%92%E4%BD%93%E6%96%87%E4%BB%B6%E5%88%B0%E5%B0%8F%E7%A8%8B%E5%BA%8F%2F</url>
+    <content type="text"><![CDATA[前言上一篇写了小程序通过WebSocket控制Flutter App进行拍照录像，那么问题又来了，小程序想要预览两部App拍摄的视频怎么办？ 我想了三种方法，并实现了其中两种： 在flutter录像完毕后上传至cos，并且在上传成功的回调中通过socket将cos路径传输给小程序 在录像过程中传递数据流至小程序，类似“直播”的效果 在录像完毕后直接将视频源文件通过socket传输给小程序，小程序将视频保存成本地文件渲染出来 第一种方法在网速较慢的时候，从录像完毕到可以预览的周期有点长，并且如果拍摄并不满意，就得浪费一些cos内存，不划算。第二种方法小程序需要接收rtmp格式的数据流，在flutter中处理的比较复杂，并且小程序审核需要七天的时间（避免涉x嘛，你懂的）。于是我选择了第三种方法，传输速度较快，实现起来也较为方便。 思路拍摄完毕拿到路径之后，通过 file.readAsBytes转化为字节流，然后直接通过socket.add()将其传输出去。小程序通过wx.getFileSystemManager().writeFile 将文件写下来，保存到本地 Flutter部分这个方法接收媒体路径，接着通过 File file = new File(path) 得到这个文件，再通过 await file.readAsBytes() 将其转化为字节流 imageBytes，最后将其返回出去 123456// 转换字节流static Future image2Base64(String path) async &#123; File file = new File(path); List&lt;int&gt; imageBytes = await file.readAsBytes(); return imageBytes;&#125; 那么当停止录像的时候把路径作为参数传递给这个方法，他的回调就是 imageBytes，将其通过socket传递给小程序就好了 12345678910// 停止摄像void onStopButtonPressed() &#123; stopVideoRecording().then((_) &#123; // 调用方法 image2Base64(videoPath).then((data)&#123; socket.add(data); &#125;); &#125;);&#125; 小程序部分监听传递过来的消息，然后通过 wx.getFileSystemManager().writeFile 方法写文件，本地路径自定义，最后将本地路径在 video 标签中渲染出来就好了。 123456789101112131415161718192021socketTask2.onMessage((res) =&gt; &#123; const FILE_BASE_NAME = "tmp_base64src"; //自定义文件名 const timestamp = new Date().getTime(); const filePath = `$&#123;wx.env.USER_DATA_PATH&#125;/$&#123;FILE_BASE_NAME&#125;-$&#123;timestamp&#125;.mp4`; wx.getFileSystemManager().writeFile(&#123; filePath, data: res.data, encoding: "binary", success() &#123; console.log(filePath) that.setState(&#123; mediaPath: filePath &#125;) &#125;, fail() &#123; return new Error("ERROR_BASE64SRC_WRITE"); &#125; &#125;);&#125;) 1&lt;Video src=&#123;mediaPath&#125; /&gt;]]></content>
+      <categories>
+        <category>小程序</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+        <tag>小程序</tag>
+        <tag>flutter</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[小程序通过WebSocket控制Flutter APP进行拍照录像]]></title>
     <url>%2F2019%2F07%2F11%2F%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%80%9A%E8%BF%87WebSocket%E6%8E%A7%E5%88%B6Flutter%20App%E8%BF%9B%E8%A1%8C%E6%8B%8D%E7%85%A7%E5%BD%95%E5%83%8F%2F</url>
     <content type="text"><![CDATA[前言公司业务有个需求，为了检测某项运动项目的动作标准性，我们需要从不同的两个方向同时拍摄3s左右的视频，那么我们可能需要想办法用一台手机发送指令，控制另外两台手机进行录像。这里我们选用的技术方案是通过WebSocket。 这里拍起来不太方便，就这么凑合着看着吧，下边是录好视频的效果 思路Dart他本身可以作为socket的服务接收client的请求，所以在每台flutter的app中（拍摄设备）启动一个socket服务，因为他们在同一局域网内，小程序可以通过ip地址来连接到flutter的socket服务，小程序可以连接最多五个个socket服务，最多可以控制五台设备。 小程序部分先填写两台设备的ip地址（从APP里边获取ipAddress），只要在同一个局域网内，应该都能连接成功，连接成功后，获取回调socketTask，他有一系列socket的api，这里不多叙述了 12345678910111213async connectWebsocket() &#123; const socketTask1 = await Taro.connectSocket(&#123; url: `ws://$&#123;this.state.ipAddress1&#125;:4041/ws`, &#125;) const socketTask2 = await Taro.connectSocket(&#123; url: `ws://$&#123;this.state.ipAddress2&#125;:4041/ws`, &#125;) this.setState(&#123; socketTask1, socketTask2 &#125;)&#125; 接着就能给flutter发送数据了，通过 socketTask.send(object) 123456789sendMessage(e) &#123; this.state.socketTask1.send(&#123; data: e.detail.value &#125;) this.state.socketTask2.send(&#123; data: e.detail.value &#125;)&#125; 这里我写了几个方法，直接通过socket传拍照、录像、停止录像的信息到APP的socket服务 1234567891011121314151617181920212223242526272829takePhoto() &#123; this.state.socketTask1.send(&#123; data: 'takephoto' &#125;) this.state.socketTask2.send(&#123; data: 'takephoto' &#125;)&#125;startVideo() &#123; this.state.socketTask1.send(&#123; data: 'startvideo' &#125;) this.state.socketTask2.send(&#123; data: 'startvideo' &#125;)&#125;stopVideo() &#123; this.state.socketTask1.send(&#123; data: 'stopvideo' &#125;) this.state.socketTask2.send(&#123; data: 'stopvideo' &#125;)&#125; Flutter部分这里我直接拷贝了网上Dart socket服务的写法 12345678910111213141516171819202122232425262728293031323334353637// 打开WebSocket startSocketServer() async &#123; try &#123; ipAddress = await GetIp.ipAddress; setState(() &#123; this.ipAddress = ipAddress; &#125;); var server = await HttpServer.bind(ipAddress, 4041); await for (HttpRequest req in server) &#123; if (req.uri.path == '/ws') &#123; // 将一个HttpRequest提升为WebSocket连接 var socket = await WebSocketTransformer.upgrade(req); socket.listen((event) &#123; setState(() &#123; message = event; &#125;); print("接收到来自 $&#123;req.connectionInfo.remoteAddress.address&#125;:$&#123;req.connectionInfo.remotePort&#125; 的消息：$event"); if(event == 'takephoto') &#123; takingPictures(); &#125; else if (event == 'startvideo') &#123; onVideoRecordButtonPressed(); &#125; else if (event == 'stopvideo') &#123; onStopButtonPressed(); &#125; else &#123; print(event); &#125; socket.add("数据已接收！"); &#125;); &#125; &#125; &#125; catch (e) &#123; print(e); &#125; &#125; 中间takingPictures()、onVideoRecordButtonPressed()、onStopButtonPressed()就是拍照、录像、停止录像的方法，至此，小程序就已成功控制了flutter进行拍照录像]]></content>
@@ -82,8 +95,8 @@
       </categories>
       <tags>
         <tag>前端</tag>
-        <tag>JavaScript</tag>
         <tag>http</tag>
+        <tag>JavaScript</tag>
         <tag>protpbuf.js</tag>
       </tags>
   </entry>
@@ -145,8 +158,8 @@
       <tags>
         <tag>前端</tag>
         <tag>微信小程序</tag>
-        <tag>JavaScript</tag>
         <tag>http</tag>
+        <tag>JavaScript</tag>
       </tags>
   </entry>
   <entry>
