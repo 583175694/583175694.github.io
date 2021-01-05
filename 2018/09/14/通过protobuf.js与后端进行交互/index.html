@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="前端,http,JavaScript,protpbuf.js," />
+  <meta name="keywords" content="前端,JavaScript,http,protpbuf.js," />
 
 
 
@@ -80,19 +80,19 @@
 
 
 <meta name="description" content="获取 *.protp文件后端完成了接口之后，将.proto 文件发给你 编译 *.protp文件将*.proto文件编译成ts、js文件，这里我是将命令写成一个脚本，运行npm run proto即可编译 123&amp;#123;    &quot;proto&quot;: &quot;pbjs -t static-module -w commonjs -o ./src/proto/ProtoServices.js ./src/pr">
-<meta name="keywords" content="前端,http,JavaScript,protpbuf.js">
+<meta name="keywords" content="前端,JavaScript,http,protpbuf.js">
 <meta property="og:type" content="article">
 <meta property="og:title" content="通过protobuf.js与后端进行交互">
 <meta property="og:url" content="http://yoursite.com/2018/09/14/通过protobuf.js与后端进行交互/index.html">
 <meta property="og:site_name" content="w blog">
 <meta property="og:description" content="获取 *.protp文件后端完成了接口之后，将.proto 文件发给你 编译 *.protp文件将*.proto文件编译成ts、js文件，这里我是将命令写成一个脚本，运行npm run proto即可编译 123&amp;#123;    &quot;proto&quot;: &quot;pbjs -t static-module -w commonjs -o ./src/proto/ProtoServices.js ./src/pr">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://github.com/583175694/markdownImage/blob/master/protoScreen1.png?raw=true">
-<meta property="og:updated_time" content="2018-12-15T08:27:33.835Z">
+<meta property="og:image" content="https://fitness-evaluation-1255704943.cos.ap-guangzhou.myqcloud.com/evaluation/production/reader/protoScreen1.png?raw=true">
+<meta property="og:updated_time" content="2021-01-05T06:17:48.465Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="通过protobuf.js与后端进行交互">
 <meta name="twitter:description" content="获取 *.protp文件后端完成了接口之后，将.proto 文件发给你 编译 *.protp文件将*.proto文件编译成ts、js文件，这里我是将命令写成一个脚本，运行npm run proto即可编译 123&amp;#123;    &quot;proto&quot;: &quot;pbjs -t static-module -w commonjs -o ./src/proto/ProtoServices.js ./src/pr">
-<meta name="twitter:image" content="https://github.com/583175694/markdownImage/blob/master/protoScreen1.png?raw=true">
+<meta name="twitter:image" content="https://fitness-evaluation-1255704943.cos.ap-guangzhou.myqcloud.com/evaluation/production/reader/protoScreen1.png?raw=true">
 
 
 
@@ -394,9 +394,9 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="https://github.com/583175694/markdownImage/blob/master/protoScreen1.png?raw=true" rel="gallery_cjy6xib0m001kpp9eebgojpc6"
+                 href="https://fitness-evaluation-1255704943.cos.ap-guangzhou.myqcloud.com/evaluation/production/reader/protoScreen1.png?raw=true" rel="gallery_ckjjqyjsr001p8d9ekg4vrgwu"
                  itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
-                <img src="https://github.com/583175694/markdownImage/blob/master/protoScreen1.png?raw=true" itemprop="contentUrl"/>
+                <img src="https://fitness-evaluation-1255704943.cos.ap-guangzhou.myqcloud.com/evaluation/production/reader/protoScreen1.png?raw=true" itemprop="contentUrl"/>
               </a>
             
           
@@ -430,7 +430,7 @@
 <figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">getCosCredentials</span>(<span class="params">request: IGetCosCredentialsRequest</span>): <span class="title">Promise</span>&lt;<span class="title">IGetCosCredentialsResponse</span>|<span class="title">null</span>&gt; </span>&#123;</span><br><span class="line">    <span class="title">try</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> <span class="built_in">url</span> = getGlobalData(<span class="string">'getCosSecretKey'</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> cosSecretKey = <span class="keyword">await</span> Taro.request&lt;IGetCosCredentialsResponse&gt;(&#123;</span><br><span class="line">            <span class="attribute">url</span>: <span class="built_in">url</span>,</span><br><span class="line">            <span class="attribute">data</span>: request,</span><br><span class="line">            <span class="attribute">method</span>: <span class="string">'POST'</span>,</span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">        <span class="built_in">console</span>.log(cosSecretKey)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> cosSecretKey.data</span><br><span class="line"></span><br><span class="line">    &#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="客户端使用方法"><a href="#客户端使用方法" class="headerlink" title="客户端使用方法"></a>客户端使用方法</h2><p>export一个函数，调用刚刚封装的方法，将{hashId：XXX}作为参数传过去，获取到服务器的返回值赋值给response（响应），然后通过dispatch方法将{getCosSuccess: response}作为参数，用中间件的方法传入Redux（此处省略很多字）。</p>
 <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ⚠️获取COS秘钥</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> getCosSecretKey = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">async</span> (dispatch: ThunkDispatch&lt;RootState, <span class="literal">null</span>, AnyAction&gt;, getState: <span class="function"><span class="params">()</span> =&gt;</span> RootState) =&gt; &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> response = <span class="keyword">await</span> getCosCredentials(&#123;hashId: <span class="string">"XXX"</span>&#125;)</span><br><span class="line">        <span class="built_in">console</span>.log(response)</span><br><span class="line">        dispatch(getCosSecretSuccess(&#123;</span><br><span class="line">            getCosSuccess: response</span><br><span class="line">        &#125;))</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取cos秘钥成功</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> GET_COS_SECRET_SUCCESS = <span class="string">'GET_COS_SECRET_SUCCESS'</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">interface</span> getCosSecretSuccess &#123;</span><br><span class="line">    getCosSuccess: <span class="built_in">any</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> getCosSecretSuccess = createAction(</span><br><span class="line">    GET_COS_SECRET_SUCCESS,</span><br><span class="line">    (payload: getCosSecretSuccess) =&gt; &#123;</span><br><span class="line">        <span class="keyword">return</span> payload</span><br><span class="line">    &#125;</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<h2 id="执行结果"><a href="#执行结果" class="headerlink" title="执行结果"></a>执行结果</h2><p><img src="https://github.com/583175694/markdownImage/blob/master/protoScreen2.png?raw=true" alt="image"></p>
+<h2 id="执行结果"><a href="#执行结果" class="headerlink" title="执行结果"></a>执行结果</h2><p><img src="https://fitness-evaluation-1255704943.cos.ap-guangzhou.myqcloud.com/evaluation/production/reader/protoScreen2.png?raw=true" alt="image"></p>
 <h2 id="彩蛋"><a href="#彩蛋" class="headerlink" title="彩蛋"></a>彩蛋</h2><p>这里呢其实我是另辟蹊径了，正确的姿势来说呢，最底层封装好的方法应该是在执行 npm run proto 命令的时候，在生成的 <em>.js 文件中已经封装好了的，在客户端我直接使用就好了的。但是生成的 </em>.js文件有特么七千行代码..= =</p>
 <p>不知道是我生成的姿势不对还是怎么样，因此自己封装了一遍底层的函数。以后有更好的方法直接使用 *.js封装的代码的话，会再写一篇博客告诉大家</p>
 
@@ -452,9 +452,9 @@
           
             <a href="/tags/前端/" rel="tag"><i class="fa fa-tag"></i> 前端</a>
           
-            <a href="/tags/http/" rel="tag"><i class="fa fa-tag"></i> http</a>
-          
             <a href="/tags/JavaScript/" rel="tag"><i class="fa fa-tag"></i> JavaScript</a>
+          
+            <a href="/tags/http/" rel="tag"><i class="fa fa-tag"></i> http</a>
           
             <a href="/tags/protpbuf-js/" rel="tag"><i class="fa fa-tag"></i> protpbuf.js</a>
           
@@ -562,7 +562,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -573,7 +573,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -584,7 +584,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -637,7 +637,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

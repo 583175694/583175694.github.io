@@ -87,12 +87,12 @@
 <meta property="og:site_name" content="w blog">
 <meta property="og:description" content="前言最近在项目中添加了语言国际化的功能。 语言国际化，也有人说成是语言本地化，其实就是为Web App添加多语言，我们的项目当前包含了中文版和英文版，按理来说『逐字替换』也不是多大事儿，但是，这么Low的做法，有钱途吗？ 一开始的时候，我考虑的是传统的为整个项目添加config文件，根据不同的语言和地区，加载不同的config文件，就能够达到界面语言切换的目的。当然，也正是因为这个想法太过于幼稚，">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://github.com/583175694/markdownImage/blob/master/internationalization.jpg?raw=true">
-<meta property="og:updated_time" content="2018-11-19T06:08:24.431Z">
+<meta property="og:image" content="https://fitness-evaluation-1255704943.cos.ap-guangzhou.myqcloud.com/evaluation/production/reader/internationalization.jpg?raw=true">
+<meta property="og:updated_time" content="2021-01-05T06:18:07.803Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在 React 项目中使用 React-intl 实现多语言支持">
 <meta name="twitter:description" content="前言最近在项目中添加了语言国际化的功能。 语言国际化，也有人说成是语言本地化，其实就是为Web App添加多语言，我们的项目当前包含了中文版和英文版，按理来说『逐字替换』也不是多大事儿，但是，这么Low的做法，有钱途吗？ 一开始的时候，我考虑的是传统的为整个项目添加config文件，根据不同的语言和地区，加载不同的config文件，就能够达到界面语言切换的目的。当然，也正是因为这个想法太过于幼稚，">
-<meta name="twitter:image" content="https://github.com/583175694/markdownImage/blob/master/internationalization.jpg?raw=true">
+<meta name="twitter:image" content="https://fitness-evaluation-1255704943.cos.ap-guangzhou.myqcloud.com/evaluation/production/reader/internationalization.jpg?raw=true">
 
 
 
@@ -394,9 +394,9 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="https://github.com/583175694/markdownImage/blob/master/internationalization.jpg?raw=true" rel="gallery_cjy6xib04000hpp9e58je2oy3"
+                 href="https://fitness-evaluation-1255704943.cos.ap-guangzhou.myqcloud.com/evaluation/production/reader/internationalization.jpg?raw=true" rel="gallery_ckjjqyjpb00068d9effkjwkmg"
                  itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
-                <img src="https://github.com/583175694/markdownImage/blob/master/internationalization.jpg?raw=true" itemprop="contentUrl"/>
+                <img src="https://fitness-evaluation-1255704943.cos.ap-guangzhou.myqcloud.com/evaluation/production/reader/internationalization.jpg?raw=true" itemprop="contentUrl"/>
               </a>
             
           
@@ -410,10 +410,10 @@
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近在项目中添加了语言国际化的功能。</p>
 <p>语言国际化，也有人说成是语言本地化，其实就是为Web App添加多语言，我们的项目当前包含了中文版和英文版，按理来说『逐字替换』也不是多大事儿，但是，这么Low的做法，有钱途吗？</p>
 <p>一开始的时候，我考虑的是传统的为整个项目添加config文件，根据不同的语言和地区，加载不同的config文件，就能够达到界面语言切换的目的。当然，也正是因为这个想法太过于幼稚，所以才被称为『一开始』的想法。语言的国际化不仅仅是将界面上的UI文字翻译成另一种语言，还包括了日期&amp;时间显示，数字显示（英文环境下每隔3位一个逗号：1,000），量词的显示（一个苹果是apple，两个苹果就应该是apples），甚至还有一个字符串中间插了一个变量的情况（”今天午饭吃了{count}个鸡腿”）…</p>
-<p><img src="https://github.com/583175694/markdownImage/blob/master/programmer1.png?raw=true" alt="image"></p>
+<p><img src="https://fitness-evaluation-1255704943.cos.ap-guangzhou.myqcloud.com/evaluation/production/reader/programmer1.png?raw=true" alt="image"></p>
 <p>所以这并不只是一个简单的字符替换问题，并且，我们要很方便的导出一个目录，放到word或者page当中，给到其他同事对照着进行翻译工作，这个非常重要！！难道你要让产品经理直接在代码里改么？或者你想一个一个搜索替换？不考虑清楚就干的话，相信我，You’ll pay for this。</p>
 <p>作为一个有追求的代码家，你肯定不希望在index.html当中增加一行Script引用吧？另外，UI中的文字全部都是使用图片的那个同学，请起立，滚。如果想要在一个React项目中，优雅的import something from somewhere，然后将界面中的文字用&lt;首字母大写 /&gt; 组件替代，最后通过简单的配置实现语言的国际化，那我们就用React-intl吧。</p>
-<p><img src="https://github.com/583175694/markdownImage/blob/master/FormatJS.png?raw=true" alt="image"></p>
+<p><img src="https://fitness-evaluation-1255704943.cos.ap-guangzhou.myqcloud.com/evaluation/production/reader/FormatJS.png?raw=true" alt="image"></p>
 <h2 id="React-intl"><a href="#React-intl" class="headerlink" title="React-intl"></a>React-intl</h2><p>项目地址: <a href="https://github.com/yahoo/react-intl" target="_blank" rel="noopener">https://github.com/yahoo/react-intl</a></p>
 <h3 id="1-安装React-intl"><a href="#1-安装React-intl" class="headerlink" title="1. 安装React-intl"></a>1. 安装React-intl</h3><p>假设你已经在你的系统中安装了node.js和npm，如果你还不知道这两个是什么东西，请自行百度，对，在百度都能找到答案。</p>
 <p>打开终端，进入项目根目录，输入以下指令安装React-intl:</p>
@@ -571,7 +571,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -582,7 +582,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -593,7 +593,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -646,7 +646,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

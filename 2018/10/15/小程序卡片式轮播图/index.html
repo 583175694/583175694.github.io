@@ -87,12 +87,12 @@
 <meta property="og:site_name" content="w blog">
 <meta property="og:description" content="前言国庆休息了一周，加上上周没有特别想写的技术，于是半个月过去了，没写博文。今天研究了一下小程序卡片式轮播图的制作。在上一个小程序，我们的设计师也设计了一个这样的卡片式轮播图，但是由于当时时间比较紧凑，没有办法很好的实现，于是就用了最普通的轮播图样式，今天正好有时间给我研究了一下，因此写一篇博文记录一下。 效果图老规矩，先上一个效果图  小程序轮播组件这里我是在小程序的轮播组件的基础上进行了修改，">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://github.com/583175694/markdownImage/blob/master/swiperHome.png?raw=true">
-<meta property="og:updated_time" content="2018-12-15T08:54:00.825Z">
+<meta property="og:image" content="https://fitness-evaluation-1255704943.cos.ap-guangzhou.myqcloud.com/evaluation/production/reader/swiperHome.png?raw=true">
+<meta property="og:updated_time" content="2021-01-05T06:18:06.790Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="小程序卡片式轮播图">
 <meta name="twitter:description" content="前言国庆休息了一周，加上上周没有特别想写的技术，于是半个月过去了，没写博文。今天研究了一下小程序卡片式轮播图的制作。在上一个小程序，我们的设计师也设计了一个这样的卡片式轮播图，但是由于当时时间比较紧凑，没有办法很好的实现，于是就用了最普通的轮播图样式，今天正好有时间给我研究了一下，因此写一篇博文记录一下。 效果图老规矩，先上一个效果图  小程序轮播组件这里我是在小程序的轮播组件的基础上进行了修改，">
-<meta name="twitter:image" content="https://github.com/583175694/markdownImage/blob/master/swiperHome.png?raw=true">
+<meta name="twitter:image" content="https://fitness-evaluation-1255704943.cos.ap-guangzhou.myqcloud.com/evaluation/production/reader/swiperHome.png?raw=true">
 
 
 
@@ -394,9 +394,9 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="https://github.com/583175694/markdownImage/blob/master/swiperHome.png?raw=true" rel="gallery_cjy6xib00000cpp9eofolnkl8"
+                 href="https://fitness-evaluation-1255704943.cos.ap-guangzhou.myqcloud.com/evaluation/production/reader/swiperHome.png?raw=true" rel="gallery_ckjjqyjpl000b8d9e2vj6ncn6"
                  itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
-                <img src="https://github.com/583175694/markdownImage/blob/master/swiperHome.png?raw=true" itemprop="contentUrl"/>
+                <img src="https://fitness-evaluation-1255704943.cos.ap-guangzhou.myqcloud.com/evaluation/production/reader/swiperHome.png?raw=true" itemprop="contentUrl"/>
               </a>
             
           
@@ -409,7 +409,7 @@
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>国庆休息了一周，加上上周没有特别想写的技术，于是半个月过去了，没写博文。今天研究了一下小程序卡片式轮播图的制作。在上一个小程序，我们的设计师也设计了一个这样的卡片式轮播图，但是由于当时时间比较紧凑，没有办法很好的实现，于是就用了最普通的轮播图样式，今天正好有时间给我研究了一下，因此写一篇博文记录一下。</p>
 <h2 id="效果图"><a href="#效果图" class="headerlink" title="效果图"></a>效果图</h2><p>老规矩，先上一个效果图</p>
-<p><img src="https://github.com/583175694/markdownImage/blob/master/swiper2.gif?raw=true" alt="image"></p>
+<p><img src="https://fitness-evaluation-1255704943.cos.ap-guangzhou.myqcloud.com/evaluation/production/reader/swiper2.gif?raw=true" alt="image"></p>
 <h2 id="小程序轮播组件"><a href="#小程序轮播组件" class="headerlink" title="小程序轮播组件"></a>小程序轮播组件</h2><p>这里我是在小程序的轮播组件的基础上进行了修改，有想自己手写轮播图的兄dei这篇对你的帮助不太大。</p>
 <h3 id="wxml"><a href="#wxml" class="headerlink" title="wxml"></a>wxml</h3><p>跟普通的轮播图组件一样，将官方的swiper组件代码复制下来就好</p>
 <figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">swiper</span> <span class="attr">class</span>=<span class="string">"swiper"</span> <span class="attr">indicator-dots</span>=<span class="string">"true"</span> <span class="attr">current</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123;current&#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span> <span class="attr">autoplay</span>=<span class="string">"true"</span> <span class="attr">circular</span>=<span class="string">"true"</span> <span class="attr">bindchange</span>=<span class="string">"changeSwiper"</span>&gt;</span></span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;<span class="name">block</span> <span class="attr">wx:for</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123;images&#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span> <span class="attr">wx:for-index</span>=<span class="string">"index"</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">swiper-item</span> <span class="attr">class</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123;current == index ? 'active' : ''&#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">image</span> <span class="attr">src</span>=<span class="string">"</span></span></span><span class="template-variable">&#123;&#123;item.url&#125;&#125;</span><span class="xml"><span class="tag"><span class="string">"</span> <span class="attr">class</span>=<span class="string">"slide-image"</span> <span class="attr">mode</span>=<span class="string">"aspectFill"</span> /&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">swiper-item</span>&gt;</span></span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;/<span class="name">block</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">swiper</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
@@ -556,7 +556,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -567,7 +567,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -578,7 +578,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -631,7 +631,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

@@ -87,12 +87,12 @@
 <meta property="og:site_name" content="w blog">
 <meta property="og:description" content="前言上一篇写了小程序通过WebSocket控制Flutter App进行拍照录像，那么问题又来了，小程序想要预览两部App拍摄的视频怎么办？ 我想了三种方法，并实现了其中两种：  在flutter录像完毕后上传至cos，并且在上传成功的回调中通过socket将cos路径传输给小程序 在录像过程中传递数据流至小程序，类似“直播”的效果 在录像完毕后直接将视频源文件通过socket传输给小程序，小程序">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="https://github.com/583175694/markdownImage/blob/master/flutter_cover1.png?raw=true">
-<meta property="og:updated_time" content="2019-07-17T07:32:41.097Z">
+<meta property="og:image" content="https://fitness-evaluation-1255704943.cos.ap-guangzhou.myqcloud.com/evaluation/production/reader/flutter_cover1.png?raw=true">
+<meta property="og:updated_time" content="2021-01-05T06:15:17.632Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Flutter通过WebSocket传输媒体文件到小程序">
 <meta name="twitter:description" content="前言上一篇写了小程序通过WebSocket控制Flutter App进行拍照录像，那么问题又来了，小程序想要预览两部App拍摄的视频怎么办？ 我想了三种方法，并实现了其中两种：  在flutter录像完毕后上传至cos，并且在上传成功的回调中通过socket将cos路径传输给小程序 在录像过程中传递数据流至小程序，类似“直播”的效果 在录像完毕后直接将视频源文件通过socket传输给小程序，小程序">
-<meta name="twitter:image" content="https://github.com/583175694/markdownImage/blob/master/flutter_cover1.png?raw=true">
+<meta name="twitter:image" content="https://fitness-evaluation-1255704943.cos.ap-guangzhou.myqcloud.com/evaluation/production/reader/flutter_cover1.png?raw=true">
 
 
 
@@ -394,9 +394,9 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="https://github.com/583175694/markdownImage/blob/master/flutter_cover1.png?raw=true" rel="gallery_cjy6xiazj0000pp9eg8djt086"
+                 href="https://fitness-evaluation-1255704943.cos.ap-guangzhou.myqcloud.com/evaluation/production/reader/flutter_cover1.png?raw=true" rel="gallery_ckjjqyjlu00018d9ettp5cbez"
                  itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
-                <img src="https://github.com/583175694/markdownImage/blob/master/flutter_cover1.png?raw=true" itemprop="contentUrl"/>
+                <img src="https://fitness-evaluation-1255704943.cos.ap-guangzhou.myqcloud.com/evaluation/production/reader/flutter_cover1.png?raw=true" itemprop="contentUrl"/>
               </a>
             
           
@@ -416,7 +416,7 @@
 </ol>
 <p>第一种方法在网速较慢的时候，从录像完毕到可以预览的周期有点长，并且如果拍摄并不满意，就得浪费一些cos内存，不划算。第二种方法小程序需要接收rtmp格式的数据流，在flutter中处理的比较复杂，并且小程序审核需要七天的时间（避免涉x嘛，你懂的）。于是我选择了第三种方法，传输速度较快，实现起来也较为方便。</p>
 <h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>拍摄完毕拿到路径之后，通过 file.readAsBytes转化为字节流，然后直接通过socket.add()将其传输出去。小程序通过wx.getFileSystemManager().writeFile 将文件写下来，保存到本地</p>
-<p><img src="https://github.com/583175694/markdownImage/blob/master/getFileSystemManager.png?raw=true" alt="image"></p>
+<p><img src="https://fitness-evaluation-1255704943.cos.ap-guangzhou.myqcloud.com/evaluation/production/reader/getFileSystemManager.png?raw=true" alt="image"></p>
 <h2 id="Flutter部分"><a href="#Flutter部分" class="headerlink" title="Flutter部分"></a>Flutter部分</h2><p>这个方法接收媒体路径，接着通过 File file = new File(path) 得到这个文件，再通过 await file.readAsBytes() 将其转化为字节流 imageBytes，最后将其返回出去</p>
 <figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  转换字节流</span></span><br><span class="line"><span class="keyword">static</span> Future image2Base64(<span class="built_in">String</span> path) <span class="keyword">async</span> &#123;</span><br><span class="line">  File file = <span class="keyword">new</span> File(path);</span><br><span class="line">  <span class="built_in">List</span>&lt;<span class="built_in">int</span>&gt; imageBytes = <span class="keyword">await</span> file.readAsBytes();</span><br><span class="line">  <span class="keyword">return</span> imageBytes;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>那么当停止录像的时候把路径作为参数传递给这个方法，他的回调就是 imageBytes，将其通过socket传递给小程序就好了</p>
@@ -424,7 +424,7 @@
 <h2 id="小程序部分"><a href="#小程序部分" class="headerlink" title="小程序部分"></a>小程序部分</h2><p>监听传递过来的消息，然后通过 wx.getFileSystemManager().writeFile 方法写文件，本地路径自定义，最后将本地路径在 video 标签中渲染出来就好了。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">socketTask2.onMessage(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> FILE_BASE_NAME = <span class="string">"tmp_base64src"</span>; <span class="comment">//自定义文件名</span></span><br><span class="line">  <span class="keyword">const</span> timestamp = <span class="keyword">new</span> <span class="built_in">Date</span>().getTime();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> filePath = <span class="string">`<span class="subst">$&#123;wx.env.USER_DATA_PATH&#125;</span>/<span class="subst">$&#123;FILE_BASE_NAME&#125;</span>-<span class="subst">$&#123;timestamp&#125;</span>.mp4`</span>;</span><br><span class="line"></span><br><span class="line">  wx.getFileSystemManager().writeFile(&#123;</span><br><span class="line">    filePath,</span><br><span class="line">    data: res.data,</span><br><span class="line">    encoding: <span class="string">"binary"</span>,</span><br><span class="line">    success() &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(filePath)</span><br><span class="line">      that.setState(&#123;</span><br><span class="line">        mediaPath: filePath</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;,</span><br><span class="line">    fail() &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">"ERROR_BASE64SRC_WRITE"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">Video</span> <span class="attr">src</span>=<span class="string">&#123;mediaPath&#125;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://github.com/583175694/markdownImage/blob/master/socket_video.png?raw=true" alt="image"></p>
+<p><img src="https://fitness-evaluation-1255704943.cos.ap-guangzhou.myqcloud.com/evaluation/production/reader/socket_video.png?raw=true" alt="image"></p>
 
       
     </div>
@@ -468,6 +468,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/01/05/基础算法之“字符串类”/" rel="prev" title="基础算法之“字符串类”">
+                基础算法之“字符串类” <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -548,7 +552,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -559,7 +563,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -570,7 +574,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -623,7 +627,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

@@ -88,7 +88,7 @@
 <meta property="og:description" content="摘要：这是一篇关于小程序聊天系统的制作  聊天界面如何布局 聊天界面如何跑通逻辑  小程序聊天系统的制作：先上效果图 编辑之后的效果 好的，开始上代码首先呢进行页面布局，这是部分聊天框的代码，这部分我放在了标签里面，让它可进行滚动 1234567891011121314151617&amp;lt;view class=&quot;time&quot;&amp;gt;2018-02-16 13:08&amp;lt;/view&amp;gt;&amp;lt;!">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="https://developers.weixin.qq.com/miniprogram/introduction/image/a.png?t=2018413">
-<meta property="og:updated_time" content="2018-12-15T07:39:48.090Z">
+<meta property="og:updated_time" content="2021-01-05T06:15:05.872Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="微信小程序聊天系统">
 <meta name="twitter:description" content="摘要：这是一篇关于小程序聊天系统的制作  聊天界面如何布局 聊天界面如何跑通逻辑  小程序聊天系统的制作：先上效果图 编辑之后的效果 好的，开始上代码首先呢进行页面布局，这是部分聊天框的代码，这部分我放在了标签里面，让它可进行滚动 1234567891011121314151617&amp;lt;view class=&quot;time&quot;&amp;gt;2018-02-16 13:08&amp;lt;/view&amp;gt;&amp;lt;!">
@@ -394,7 +394,7 @@
           
             <div class="post-gallery-row">
               <a class="post-gallery-img fancybox"
-                 href="https://developers.weixin.qq.com/miniprogram/introduction/image/a.png?t=2018413" rel="gallery_cjy6xib0l001gpp9e8jkjnekz"
+                 href="https://developers.weixin.qq.com/miniprogram/introduction/image/a.png?t=2018413" rel="gallery_ckjjqyjrv001b8d9estolihf6"
                  itemscope itemtype="http://schema.org/ImageObject" itemprop="url">
                 <img src="https://developers.weixin.qq.com/miniprogram/introduction/image/a.png?t=2018413" itemprop="contentUrl"/>
               </a>
@@ -412,8 +412,8 @@
 <li>聊天界面如何布局</li>
 <li>聊天界面如何跑通逻辑</li>
 </ol>
-<h2 id="小程序聊天系统的制作："><a href="#小程序聊天系统的制作：" class="headerlink" title="小程序聊天系统的制作："></a>小程序聊天系统的制作：</h2><h3 id="先上效果图"><a href="#先上效果图" class="headerlink" title="先上效果图"></a>先上效果图</h3><p><img src="https://github.com/583175694/markdownImage/blob/master/chat-1.png?raw=true" alt="image"></p>
-<h3 id="编辑之后的效果"><a href="#编辑之后的效果" class="headerlink" title="编辑之后的效果"></a>编辑之后的效果</h3><p><img src="https://github.com/583175694/markdownImage/blob/master/chat-2.png?raw=true" alt="image"></p>
+<h2 id="小程序聊天系统的制作："><a href="#小程序聊天系统的制作：" class="headerlink" title="小程序聊天系统的制作："></a>小程序聊天系统的制作：</h2><h3 id="先上效果图"><a href="#先上效果图" class="headerlink" title="先上效果图"></a>先上效果图</h3><p><img src="https://fitness-evaluation-1255704943.cos.ap-guangzhou.myqcloud.com/evaluation/production/reader/chat-1.png?raw=true" alt="image"></p>
+<h3 id="编辑之后的效果"><a href="#编辑之后的效果" class="headerlink" title="编辑之后的效果"></a>编辑之后的效果</h3><p><img src="https://fitness-evaluation-1255704943.cos.ap-guangzhou.myqcloud.com/evaluation/production/reader/chat-2.png?raw=true" alt="image"></p>
 <h3 id="好的，开始上代码"><a href="#好的，开始上代码" class="headerlink" title="好的，开始上代码"></a>好的，开始上代码</h3><p>首先呢进行页面布局，这是部分聊天框的代码，这部分我放在了<scroll-view>标签里面，让它可进行滚动</scroll-view></p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"time"</span>&gt;</span>2018-02-16 13:08<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 加了chat_reverse和reverse是对方发给我的信息 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"chat chat_reverse"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"head"</span>&gt;</span><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"send reverse"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">text</span>&gt;</span>周末有空吗<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"arrow"</span>&gt;</span><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 没有chat_reverse和reverse是我发给对方信息 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"chat"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"send"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">text</span>&gt;</span>有的，周末你想去哪儿吗有的，周末你想去哪儿吗<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"arrow"</span>&gt;</span><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"head"</span>&gt;</span><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>这里有一个要注意的地方和一个难点：</p>
@@ -556,7 +556,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">21</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -567,7 +567,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -578,7 +578,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -631,7 +631,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
